@@ -1,26 +1,77 @@
 package com.example.taskmanagement.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.taskmanagement.R;
+import com.example.taskmanagement.sql.DatabaseHelper;
+import com.example.taskmanagement.models.User;
 
 public class RegisterActivity extends AppCompatActivity {
+
+    private EditText etUsername, etPassword, etConfirmPassword;
+    private Button btnRegister, btnBack;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.register_main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        // Initialize views
+        etUsername = findViewById(R.id.et_username);
+        etPassword = findViewById(R.id.et_password);
+        etConfirmPassword = findViewById(R.id.et_confirm_password);
+        btnRegister = findViewById(R.id.btn_register);
+        btnBack = findViewById(R.id.btn_back);
+
+        // Initialize DatabaseHelper
+        databaseHelper = new DatabaseHelper(this);
+
+        // Handle register button click
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerUser();
+            }
         });
+
+        // Set up the back button click handler
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    // Method to register user
+    private void registerUser() {
+        String username = etUsername.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
+        String confirmPassword = etConfirmPassword.getText().toString().trim();
+
+        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+        } else if (!password.equals(confirmPassword)) {
+            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+            etPassword.setText("");
+            etConfirmPassword.setText("");
+        } else if (databaseHelper.checkUser(username)) {
+            Toast.makeText(this, "Username already exists", Toast.LENGTH_SHORT).show();
+        } else {
+            User user = new User(username, password);
+            databaseHelper.addUser(user);
+            Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

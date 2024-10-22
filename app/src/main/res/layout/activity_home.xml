@@ -56,7 +56,7 @@
         android:layout_height="350dp"
         android:layout_marginStart="-50dp"
         android:layout_marginTop="160dp"
-        android:src="@drawable/Ellipse2"
+        android:src="@drawable/ellipse2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -105,7 +105,6 @@
         app:backgroundTint="#FFFFE0"
         android:layout_marginBottom="32dp"
         android:text="Register"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/tv_no_account" />

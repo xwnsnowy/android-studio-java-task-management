@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 public class User {
     private String name;
-
     private String password;
-
     private ArrayList<Task> tasks;
 
     public User(String name, String password, ArrayList<Task> tasks) {
@@ -15,7 +13,7 @@ public class User {
         this.tasks = tasks;
     }
 
-    public User(String name, String password){
+    public User(String name, String password) {
         this.name = name;
         this.password = password;
         this.tasks = new ArrayList<>();

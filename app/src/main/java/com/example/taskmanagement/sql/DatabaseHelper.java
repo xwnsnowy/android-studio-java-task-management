@@ -5,12 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import com.example.taskmanagement.models.User;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     // Khai báo các biến cơ bản cho tên và phiên bản cơ sở dữ liệu
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "UserManager.db";
+    private static final String DATABASE_NAME = "TaskManagement.db";
 
     // Tên bảng và các cột trong bảng
     private static final String TABLE_USER = "user";
@@ -28,7 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private final String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
 
     // Constructor của DatabaseHelper
-    public DatabaseHelper(Context context){
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -46,7 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Thêm người dùng mới vào cơ sở dữ liệu
-    public void addUser(User user){
+    public void addUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_USER_NAME, user.getName());
@@ -56,11 +57,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Kiểm tra xem người dùng có tồn tại không bằng user name
-    public boolean checkUser(String id){
-        String[] columns = {COLUMN_USER_NAME};
-        SQLiteDatabase db = this.getWritableDatabase();
+    public boolean checkUser(String username) {
+        String[] columns = { COLUMN_USER_NAME };
+        SQLiteDatabase db = this.getReadableDatabase();
         String selection = COLUMN_USER_NAME + " = ?";
-        String[] selectionArgs = {id};
+        String[] selectionArgs = { username };
         Cursor cursor = db.query(TABLE_USER, columns, selection, selectionArgs, null, null, null);
         int cursorCount = cursor.getCount();
         cursor.close();
@@ -69,11 +70,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Kiểm tra xem người dùng có tồn tại không bằng user name và password
-    public boolean checkUser(String id, String password){
-        String[] columns = {COLUMN_USER_NAME};
-        SQLiteDatabase db = this.getWritableDatabase();
-        String selection = COLUMN_USER_NAME + " = ?" + " AND " + COLUMN_USER_PASSWORD + " =?";
-        String[] selectionArgs = {id, password};
+    public boolean isLoginValid(String username, String password) {
+        String[] columns = { COLUMN_USER_NAME };
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = COLUMN_USER_NAME + " = ? AND " + COLUMN_USER_PASSWORD + " = ?";
+        String[] selectionArgs = { username, password };
         Cursor cursor = db.query(TABLE_USER, columns, selection, selectionArgs, null, null, null);
         int cursorCount = cursor.getCount();
         cursor.close();
