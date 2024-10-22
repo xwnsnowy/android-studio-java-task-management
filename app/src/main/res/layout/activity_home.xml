@@ -23,36 +23,51 @@
 
     <TextView
         android:id="@+id/tv_be_organized"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        style="@style/TitleTextView"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="4dp"
         android:text="Be organized."
-        android:textColor="@android:color/white"
-        android:textSize="42sp"
-        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tv_start_now"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_start_now"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        style="@style/SubTitleTextView"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
         android:text="Start Now."
-        android:textColor="@android:color/black"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/iv_center_image"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/tv_be_organized" />
 
     <ImageView
-        android:id="@+id/iv_center_image"
+        android:id="@+id/ellipse"
         android:layout_width="wrap_content"
         android:layout_height="400dp"
+        android:layout_marginTop="-100dp"
+        android:src="@drawable/ellipse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ellipse2"
+        android:layout_width="wrap_content"
+        android:layout_height="350dp"
+        android:layout_marginStart="-50dp"
+        android:layout_marginTop="160dp"
+        android:src="@drawable/Ellipse2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_center_image"
+        android:layout_width="wrap_content"
+        android:layout_height="360dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/img_home_task"
-        app:layout_constraintBottom_toTopOf="@id/btn_login"
+        app:layout_constraintBottom_toTopOf="@id/btn_login_home"
         app:layout_constraintEnd_toEndOf="@+id/guideline_right"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
@@ -60,13 +75,10 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <Button
-        android:id="@+id/btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:id="@+id/btn_login_home"
+        style="@style/ButtonStyle"
+        app:backgroundTint="#FFFFE0"
         android:text="Login"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/tv_no_account"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintHorizontal_bias="0.496"
@@ -79,22 +91,22 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Don't have an account?"
+        android:textSize="15sp"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/btn_signup"
+        app:layout_constraintBottom_toTopOf="@+id/btn_signup_home"
         app:layout_constraintEnd_toEndOf="@+id/guideline_right"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_login_home" />
 
     <Button
-        android:id="@+id/btn_signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:id="@+id/btn_signup_home"
+        style="@style/ButtonStyle"
+        app:backgroundTint="#FFFFE0"
+        android:layout_marginBottom="32dp"
         android:text="Register"
-        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/tv_no_account" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
