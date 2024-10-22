@@ -5,4 +5,8 @@
 
     <color name="purple">#8692f7</color>
 
+    <color name="trackLight">#8692f7</color>
+    <color name="grey">#aaa</color>
+    <color name="trackSun">#FF9999</color>
+
 </resources>

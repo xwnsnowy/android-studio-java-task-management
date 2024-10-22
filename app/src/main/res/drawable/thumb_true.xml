@@ -1,0 +1,10 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:height="36dp"
+        android:width="36dp"
+        android:drawable="@drawable/sun"
+        android:top="6dp"
+        android:bottom="6dp"
+        android:right="6dp"
+        android:left="6dp"/>
+</layer-list>
