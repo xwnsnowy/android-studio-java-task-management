@@ -2,7 +2,7 @@
     <item
         android:height="36dp"
         android:width="36dp"
-        android:drawable="@drawable/half_moon"
+        android:drawable="@drawable/sun"
         android:top="6dp"
         android:bottom="6dp"
         android:right="6dp"

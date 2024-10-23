@@ -5,19 +5,31 @@
     android:id="@+id/login_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f2f2f2">
-
+    android:background="@drawable/login_bk">
 
     <!-- Back Button -->
     <Button
         android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Back"
+        style="@style/ButtonBack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:background="@drawable/login_shape"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_bk"
+            android:contentDescription="login background" />
+
+    </LinearLayout>
 
     <!-- Logo on top of the card -->
     <ImageView
@@ -56,10 +68,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Login"
+                android:text="@string/btn_login"
+                style="@style/TitleTextView"
                 android:textColor="#333333"
-                android:textSize="36sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -72,7 +83,7 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/custom_edittext"
                 android:drawableLeft="@drawable/baseline_person_24"
-                android:hint="Username"
+                android:hint="@string/hint_username"
                 android:inputType="text"
                 android:padding="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +98,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_edittext"
                 android:drawableLeft="@drawable/baseline_lock_24"
-                android:hint="Password"
+                android:hint="@string/hint_password"
                 android:inputType="textPassword"
                 android:padding="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -100,9 +111,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:backgroundTint="#333333"
-                android:padding="12dp"
-                android:text="Login"
+                style="@style/ButtonStyle"
+                android:backgroundTint="@color/primaryBackgroundColor"
+                android:text="@string/btn_login"
                 android:textColor="#ffffff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -116,7 +127,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Don't have an account? Register now."
+        android:text="@string/dont_have_account2"
         android:textColor="#ff6200ee"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -128,10 +139,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="#007bff"
+        style="@style/ButtonStyle"
+        android:backgroundTint="@color/secondaryBackgroundColor"
         android:padding="12dp"
-        android:text="Register"
-        android:textColor="#ffffff"
+        android:text="@string/btn_register"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_register_prompt" />

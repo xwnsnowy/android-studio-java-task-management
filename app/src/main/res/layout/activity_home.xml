@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#445ae3">
+    android:background="@color/primaryColor">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left"
@@ -26,7 +26,7 @@
         style="@style/TitleTextView"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="4dp"
-        android:text="Be organized."
+        android:text="@string/slogan1"
         app:layout_constraintBottom_toTopOf="@+id/tv_start_now"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +36,7 @@
         style="@style/SubTitleTextView"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="8dp"
-        android:text="Start Now."
+        android:text="@string/slogan2"
         app:layout_constraintBottom_toTopOf="@+id/iv_center_image"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/tv_be_organized" />
@@ -78,7 +78,7 @@
         android:id="@+id/btn_login_home"
         style="@style/ButtonStyle"
         app:backgroundTint="#FFFFE0"
-        android:text="Login"
+        android:text="@string/btn_login"
         app:layout_constraintBottom_toTopOf="@+id/tv_no_account"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintHorizontal_bias="0.496"
@@ -90,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Don't have an account?"
+        android:text="@string/dont_have_account1"
         android:textSize="15sp"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/btn_signup_home"
@@ -104,8 +104,9 @@
         style="@style/ButtonStyle"
         app:backgroundTint="#FFFFE0"
         android:layout_marginBottom="32dp"
-        android:text="Register"
+        android:text="@string/btn_register"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/tv_no_account" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
