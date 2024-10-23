@@ -103,4 +103,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return isValid;
     }
+
+    public User getUserByUsername(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        User user = null;
+        Cursor cursor = null;
+        try {
+            String[] columns = {COLUMN_USER_NAME, COLUMN_USER_USERNAME, COLUMN_USER_PASSWORD};
+            String selection = COLUMN_USER_USERNAME + " = ?";
+            String[] selectionArgs = {username};
+
+            // Query the user table
+            cursor = db.query(TABLE_USER, columns, selection, selectionArgs, null, null, null);
+
+            // If a record is found, create a User object
+            if (cursor != null && cursor.moveToFirst()) {
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_USER_NAME));
+                String userUsername = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_USER_USERNAME));
+                String password = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_USER_PASSWORD));
+
+                // Create a new User object
+                user = new User(name, userUsername, password);
+            }
+        } catch (Exception e) {
+            Log.e("DatabaseHelper", "Error fetching user by username", e);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
+        }
+
+        return user; // Return the User object (or null if not found)
+    }
+
 }

@@ -19,6 +19,8 @@
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
     <string name="hint_confirm_password">Confirm Password</string>
+    <string name="menu">Menu</string>
+    <string name="profile">Profile</string>
 
 
     <string name="connection_text">Afin d\'accéder à votre espace, veuillez vous identifier</string>

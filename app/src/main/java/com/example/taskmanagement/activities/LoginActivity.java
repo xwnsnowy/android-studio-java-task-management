@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.taskmanagement.R;
+import com.example.taskmanagement.models.User;
 import com.example.taskmanagement.sql.DatabaseHelper;
 
 public class LoginActivity extends AppCompatActivity {
@@ -62,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.apply();
                     // Redirect to TaskListActivity
                     Intent intent = new Intent(LoginActivity.this, TaskListActivity.class);
+                    intent.putExtra("username", username); // Truyền thêm thông tin username
                     startActivity(intent);
                     finish();
                 } else {
