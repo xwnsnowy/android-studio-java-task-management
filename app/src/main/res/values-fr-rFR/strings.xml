@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gestion des Tâches</string>
+    <string name="welcome">Bonjour, </string>
+    <string name="brithness_mode_impossible">Impossible de changer de mode !</string>
+    <string name="slogan1">Soyez organisé.</string>
+    <string name="slogan2">Commencez maintenant.</string>
+    <string name="btn_login">Connexion</string>
+    <string name="btn_register">Inscription</string>
+    <string name="back_button_description">Retour</string>
+    <string name="already_have_account">Vous avez déjà un compte ?</string>
+    <string name="dont_have_account1">Vous n\'avez pas de compte ?</string>
+    <string name="dont_have_account2">Vous n\'avez pas de compte ? Inscrivez-vous maintenant.</string>
+    <string name="hint_name">Votre nom</string>
+    <string name="hint_username">Nom d\'utilisateur</string>
+    <string name="hint_password">Mot de passe</string>
+    <string name="hint_confirm_password">Confirmez le mot de passe</string>
+    <string name="menu">Menu</string>
+    <string name="profile">Profil</string>
+</resources>

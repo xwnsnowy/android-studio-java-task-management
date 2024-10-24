@@ -13,9 +13,11 @@
         android:theme="@style/Theme.TaskManagement"
         tools:targetApi="31">
         <activity
+            android:name=".activities.LanguagesActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.TaskListActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".activities.SplashActivity"
             android:exported="false" />

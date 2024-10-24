@@ -14,42 +14,43 @@ import com.example.taskmanagement.sql.DatabaseHelper;
 import com.example.taskmanagement.models.User;
 
 public class RegisterActivity extends AppCompatActivity {
-
     private EditText etName, etUsername, etPassword, etConfirmPassword;
     private Button btnRegister, btnBack;
     private DatabaseHelper databaseHelper;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-
-        // Initialize views
+    private void bindingView() {
         etName = findViewById(R.id.et_name);
         etUsername = findViewById(R.id.et_username);
         etPassword = findViewById(R.id.et_password);
         etConfirmPassword = findViewById(R.id.et_confirm_password);
         btnRegister = findViewById(R.id.btn_register);
         btnBack = findViewById(R.id.btn_back);
+    }
+
+    private void bindingAction() {
+        btnRegister.setOnClickListener(this::onBtnRegisterClick);
+        btnBack.setOnClickListener(this::onBtnBackClick);
+    }
+
+    private void onBtnRegisterClick(View view) {
+        registerUser();
+    }
+
+    private void onBtnBackClick(View view) {
+        finish();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register);
 
         // Initialize DatabaseHelper
         databaseHelper = new DatabaseHelper(this);
 
-        // Handle register button click
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerUser();
-            }
-        });
-
-        // Set up the back button click handler
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        // Bind views and actions
+        bindingView();
+        bindingAction();
     }
 
     // Method to register user
@@ -76,5 +77,4 @@ public class RegisterActivity extends AppCompatActivity {
             finish();
         }
     }
-
 }

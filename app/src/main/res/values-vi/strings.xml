@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Quản lý Công việc</string>
+    <string name="welcome">Xin chào, </string>
+    <string name="brithness_mode_impossible">Không thể chuyển chế độ!</string>
+    <string name="slogan1">Hãy tổ chức.</string>
+    <string name="slogan2">Bắt đầu ngay.</string>
+    <string name="btn_login">Đăng nhập</string>
+    <string name="btn_register">Đăng ký</string>
+    <string name="back_button_description">Quay lại</string>
+    <string name="already_have_account">Bạn đã có tài khoản?</string>
+    <string name="dont_have_account1">Bạn chưa có tài khoản?</string>
+    <string name="dont_have_account2">Bạn chưa có tài khoản? Đăng ký ngay.</string>
+    <string name="hint_name">Tên của bạn</string>
+    <string name="hint_username">Tên người dùng</string>
+    <string name="hint_password">Mật khẩu</string>
+    <string name="hint_confirm_password">Xác nhận mật khẩu</string>
+    <string name="menu">Menu</string>
+    <string name="profile">Hồ sơ</string>
+</resources>

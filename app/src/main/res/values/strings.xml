@@ -1,95 +1,27 @@
 <resources>
     <string name="app_name">Task Management</string>
-<!--    <string name="checkbok_remember_me" translatable="false">com.example.gestiondeprojet.remember_me</string>-->
-<!--    <string name="username" translatable="false">com.example.gestiondeprojet.username</string>-->
-<!--    <string name="password" translatable="false">com.example.gestiondeprojet.password</string>-->
-<!--    <string name="brigthness_mode" translatable="false">com.example.gestiondeprojet.dark_mode</string>-->
-<!--    <string name="language" translatable="false">com.example.gestiondeprojet.language</string>-->
-<!--    <string name="desc_logo" translatable="false">logo of project management corp.</string>-->
-
+    <!--    <string name="checkbok_remember_me" translatable="false">com.example.gestiondeprojet.remember_me</string>-->
+    <!--    <string name="username" translatable="false">com.example.gestiondeprojet.username</string>-->
+    <!--    <string name="password" translatable="false">com.example.gestiondeprojet.password</string>-->
+    <!--    <string name="brigthness_mode" translatable="false">com.example.gestiondeprojet.dark_mode</string>-->
+    <!--    <string name="language" translatable="false">com.example.gestiondeprojet.language</string>-->
+    <!--    <string name="desc_logo" translatable="false">logo of project management corp.</string>-->
+    <string name="language" translatable="false">com.example.taskmanagement.language</string>
+    <string name="brithness_mode" translatable="false">com.example.taskmanagement.dark_mode</string>
+    <string name="brithness_mode_impossible">Cannot switch modes!</string>
+    <string name="welcome">Hello, </string>
     <string name="slogan1">Be organized.</string>
     <string name="slogan2">Start Now.</string>
     <string name="btn_login">Login</string>
     <string name="btn_register">Register</string>
     <string name="back_button_description">Back</string>
     <string name="already_have_account">Already have an account?</string>
-    <string name="dont_have_account1">Dont have an account?</string>
-    <string name="dont_have_account2">Dont have an account? Register now.</string>
+    <string name="dont_have_account1">Don\`t have an account?</string>
+    <string name="dont_have_account2">Don\`t have an account? Register now.</string>
     <string name="hint_name">Your Name</string>
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
     <string name="hint_confirm_password">Confirm Password</string>
     <string name="menu">Menu</string>
     <string name="profile">Profile</string>
-
-
-    <string name="connection_text">Afin d\'accéder à votre espace, veuillez vous identifier</string>
-    <string name="connection_id">Identifiant</string>
-    <string name="connection_password">Mot de passe</string>
-    <string name="validate">Valider</string>
-    <string name="create_account">Créer un compte</string>
-    <string name="create_task_text">Créer votre tâche ci-dessous :</string>
-    <string name="name_task">Nom de la tache</string>
-    <string name="description">Description</string>
-    <string name="hours">Heures</string>
-    <string name="minutes">Minutes</string>
-    <string name="begin_date">Date de début</string>
-    <string name="end_date">Date de fin</string>
-    <string name="context">Contexte</string>
-    <string name="project_name">Nom du projet</string>
-    <string name="save">Enregistrer</string>
-    <string name="modify">Modifier</string>
-    <string name="estimated_duration">Durée estimée</string>
-    <string name="task_state">Etat d\'avancement du projet</string>
-    <string name="version">Version</string>
-    <string name="update_text">Mettez à jour votre tâche ci-dessous :</string>
-    <string name="update">Mettre à jour</string>
-    <string name="remove">Supprimer</string>
-    <string name="cancel">Annuler</string>
-
-    <string name="date_begin_date_max_end" translatable="false">Date begin / Date max end</string>
-
-    <string name="no_project_found">La tâche n\'est pas lié à un projet</string>
-    <string name="project_found">Projet lié à la tâche</string>
-    <string name="error_date">La date de début ne peut pas être après la date de fin !</string>
-    <string name="fill_required_fill">Veuillez remplir tous les champs obligatoires</string>
-
-    <string name="todo">A faire</string>
-    <string name="doing">En cours</string>
-    <string name="finish">Fini</string>
-
-    <string name="by_state">Par état</string>
-    <string name="by_date">Par date</string>
-    <string name="by_name">Par nom</string>
-    <string name="by_duration">Par durée</string>
-    <string name="by_project">Par projet</string>
-
-    <string name="remove_task_text">Suppression de tache</string>
-    <string name="text_remove_explain">Pour supprimer une tâche, il vous suffit de cliquer sur la tâche et dans la page affichant les attributs de la tâche, il faut cliquer sur la corbeille ou vous pouvez rester appuyer sur une tâche pendant une seconde et une fenêtre va vous inviter à supprimer la tâche</string>
-    <string name="text_on_long_item_click">Que voulez vous faire avec la tache ?</string>
-
-    <string name="choose_language">Choose Language…</string>
-    <string name="brithness_mode_impossible">Le changement de mode n\'est pas possible !</string>
-    <string name="remember_me">Se souvenir de moi</string>
-
-    <string name="password_not_same">Les mots de passe ne sont pas identiques !</string>
-    <string name="id_already_used">L\'identifiant est déjà utilisé !</string>
-    <string name="password_incorrect">Le mot de passe n\'est pas correct !</string>
-    <string name="id_incorrect">L\'identifiant n\'est pas dans nos bases de données !</string>
-    <string name="text_popup">Que voulez vous faire avec la tache ?</string>
-
-    <string name="loading_error">Erreur de chargement !</string>
-    <string name="loading_error_text">"Le site que vous tentez de visualiser n'est pas accésible. Il se peut que le lien soit erroné, ou que votre connexion ou celle de site hébergeant le site ne soit pas fonctionnel.</string>
-    <string name="loading">Chargement…</string>
-
-    <string name="error_url_entered">L\'url n\'est pas conforme !</string>
-    <string name="error_url_entered_text">Vous pouvez laisser le champs vide ou bien le remplir avec un lien conforme</string>
-
-    <string name="empty_link">Il n\'y pas de lien !</string>
-    <string name="url">URL</string>
-
-    <string name="no_link">Auncun lien lié</string>
-
-    <string name="ok">Ok</string>
-    <string name="back_button">Back button</string>
 </resources>

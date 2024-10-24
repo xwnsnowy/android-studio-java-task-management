@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Task Management</string>
+    <string name="welcome">Hello, </string>
+    <string name="brithness_mode_impossible">Cannot switch modes!</string>
+    <string name="slogan1">Be organized.</string>
+    <string name="slogan2">Start Now.</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_register">Register</string>
+    <string name="back_button_description">Back</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="dont_have_account1">Dont have an account?</string>
+    <string name="dont_have_account2">Dont have an account? Register now.</string>
+    <string name="hint_name">Your Name</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="menu">Menu</string>
+    <string name="profile">Profile</string>
+</resources>
