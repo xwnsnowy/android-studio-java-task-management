@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -35,6 +37,7 @@ public class TaskListActivity extends AppCompatActivity {
     private ImageButton btnMenu;
     private TabLayout tabLayout;
     private ViewPager2 viewPager;
+    private Button btnNewTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +88,7 @@ public class TaskListActivity extends AppCompatActivity {
         btnMenu = findViewById(R.id.menu_button);
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
+        btnNewTask = findViewById(R.id.btn_new_task);
     }
 
     private void bindingAction() {
@@ -107,6 +111,7 @@ public class TaskListActivity extends AppCompatActivity {
 
         // Set action for the menu button
         btnMenu.setOnClickListener(this::showPopupMenu);
+        btnNewTask.setOnClickListener(this::onBtnNewTaskClick);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -124,6 +129,11 @@ public class TaskListActivity extends AppCompatActivity {
                 tab.view.setContentDescription("Tab " + tab.getPosition() + " reselected");
             }
         });
+    }
+
+    private void onBtnNewTaskClick(View view) {
+        Intent intent = new Intent(TaskListActivity.this, CreateTaskActivity.class);
+        startActivity(intent);
     }
 
     private void applyNightMode() {
@@ -160,4 +170,18 @@ public class TaskListActivity extends AppCompatActivity {
         editor.putBoolean("nightMode", nightMode);
         editor.apply();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (getIntent().getBooleanExtra("refreshTasks", false)) {
+            for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                if (fragment instanceof MyTasksFragment) {
+                    ((MyTasksFragment) fragment).refreshTasks();
+                    break;
+                }
+            }
+        }
+    }
+
 }

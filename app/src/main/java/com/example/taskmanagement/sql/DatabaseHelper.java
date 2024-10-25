@@ -6,11 +6,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.example.taskmanagement.models.State;
+import com.example.taskmanagement.models.Task;
 import com.example.taskmanagement.models.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "TaskManagement.db";
 
     private static final String TABLE_USER = "user";
@@ -19,13 +25,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_USER_USERNAME = "user_username";
     private static final String COLUMN_USER_PASSWORD = "user_password";
 
+    private static final String TABLE_TASK = "task";
+    private static final String COLUMN_TASK_ID = "task_id";
+    private static final String COLUMN_TASK_NAME = "task_name";
+    private static final String COLUMN_TASK_DESCRIPTION = "task_description";
+    private static final String COLUMN_TASK_ESTIMATE_DURATION = "task_estimate_duration";
+    private static final String COLUMN_TASK_CONTEXT = "task_context";
+    private static final String COLUMN_TASK_URL = "task_url";
+    private static final String COLUMN_TASK_STATE = "task_state";
+    private static final String COLUMN_TASK_PROJECT = "task_project";
+    private static final String COLUMN_TASK_BEGIN_DATE = "begin_date";
+    private static final String COLUMN_TASK_END_DATE = "end_date";
+
     private final String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
             + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_USER_NAME + " TEXT, "
             + COLUMN_USER_USERNAME + " TEXT, "
             + COLUMN_USER_PASSWORD + " TEXT" + ")";
 
+    private final String CREATE_TASK_TABLE = "CREATE TABLE " + TABLE_TASK + "("
+            + COLUMN_TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + COLUMN_TASK_NAME + " TEXT, "
+            + COLUMN_TASK_DESCRIPTION + " TEXT, "
+            + COLUMN_TASK_ESTIMATE_DURATION + " TEXT, "
+            + COLUMN_TASK_BEGIN_DATE + " TEXT, "
+            + COLUMN_TASK_END_DATE + " TEXT, "
+            + COLUMN_TASK_STATE + " TEXT, "
+            + COLUMN_TASK_CONTEXT + " TEXT, "
+            + COLUMN_TASK_PROJECT + " TEXT, "
+            + COLUMN_TASK_URL + " TEXT"
+            + ")";
+
     private final String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
+    private final String DROP_USER_TASK = "DROP TABLE IF EXISTS " + TABLE_TASK;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -35,6 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         try {
             db.execSQL(CREATE_USER_TABLE);
+            db.execSQL(CREATE_TASK_TABLE);
         } catch (Exception e) {
             Log.e("DatabaseHelper", "Error creating database", e);
         }
@@ -66,6 +99,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void addTask(Task task) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TASK_NAME, task.getName());
+        values.put(COLUMN_TASK_DESCRIPTION, task.getDescription());
+        values.put(COLUMN_TASK_ESTIMATE_DURATION, task.getEstimateDuration());
+        values.put(COLUMN_TASK_BEGIN_DATE, task.getBeginDate());
+        values.put(COLUMN_TASK_END_DATE, task.getMaxEndDate());
+        values.put(COLUMN_TASK_STATE, "toDo");
+        values.put(COLUMN_TASK_CONTEXT, task.getContext());
+        values.put(COLUMN_TASK_PROJECT, task.getProjectName());
+        values.put(COLUMN_TASK_URL, task.getUrl());
+        db.insert(TABLE_TASK, null, values);
+        db.close();
+    }
+
     public boolean checkUser(String username) {
         String[] columns = { COLUMN_USER_USERNAME };
         SQLiteDatabase db = this.getReadableDatabase();
@@ -83,6 +132,56 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.close();
         }
         return exists;
+    }
+
+    public List<Task> getTasksByState(String state) {
+        List<Task> tasks = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_TASK,
+                new String[]{
+                        COLUMN_TASK_ID,
+                        COLUMN_TASK_NAME,
+                        COLUMN_TASK_DESCRIPTION,
+                        COLUMN_TASK_ESTIMATE_DURATION,
+                        COLUMN_TASK_BEGIN_DATE,
+                        COLUMN_TASK_END_DATE,
+                        COLUMN_TASK_STATE,
+                        COLUMN_TASK_CONTEXT,
+                        COLUMN_TASK_PROJECT,
+                        COLUMN_TASK_URL
+                },
+                COLUMN_TASK_STATE + " = ?",
+                new String[]{state},
+                null,
+                null,
+                null);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    State taskState = new State();
+                    taskState.changeState(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_STATE)));
+
+                    Task task = new Task(
+                            cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_TASK_ID)),
+                            cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_NAME)),
+                            cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_DESCRIPTION)),
+                            cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_ESTIMATE_DURATION)),
+                            cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_BEGIN_DATE)),
+                            cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_END_DATE)),
+                            taskState,
+                            cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_CONTEXT)),
+                            cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_PROJECT)),
+                            cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_URL))
+                    );
+                    tasks.add(task);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+        db.close();
+        return tasks;
     }
 
     public boolean isLoginValid(String username, String password) {

@@ -22,4 +22,17 @@
     <string name="my_tasks">Mes Tâches</string>
     <string name="in_progress">En cours</string>
     <string name="completed">Terminé</string>
+    <string name="new_task">Nouvelle tâche</string>
+    <string name="create_task_text">Créer une tâche</string>
+    <string name="hint_name_task">Entrez le nom de la tâche</string>
+    <string name="hint_description_task">Description de la tâche</string>
+    <string name="hours">Heures</string>
+    <string name="minutes">Minutes</string>
+    <string name="begin_date">Date de début</string>
+    <string name="end_date">Date de fin</string>
+    <string name="context">Contexte</string>
+    <string name="project_name">Nom du projet</string>
+    <string name="project_url">URL du projet</string>
+    <string name="hello_blank_fragment">Bonjour fragment vierge</string>
+
 </resources>

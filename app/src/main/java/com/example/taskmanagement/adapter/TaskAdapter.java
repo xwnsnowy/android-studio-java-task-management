@@ -6,13 +6,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.taskmanagement.R;
 import com.example.taskmanagement.models.Task;
-
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
@@ -71,8 +68,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             taskDate.setText(task.getMaxEndDate());
             taskEstimatedDuration.setText(task.getEstimateDuration());
             taskProject.setText(task.getProjectName());
-            // Set icon or mnemonic if needed
-            // taskIcon.setImageResource(task.getMnemonic());
         }
+    }
+
+    public void updateTasks(List<Task> newTasks) {
+        tasks.clear();
+        tasks.addAll(newTasks);
+        notifyDataSetChanged();
     }
 }

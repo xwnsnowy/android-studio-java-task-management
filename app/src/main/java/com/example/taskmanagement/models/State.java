@@ -43,12 +43,6 @@ public class State {
         }
     }
 
-    /**
-     * This method allows to return the string state of the object.
-     * Cette méthode retourne l'état de l'objet dans un string.
-     * @return A string which represent the state of the object / Un string qui contient l'état
-     *         de l'objet.
-     */
     public String getStatue(){
         if(toDo){
             return TODO;
@@ -59,17 +53,6 @@ public class State {
         }
     }
 
-    /**
-     * This method allows to compare two states and returns an int that represents the comparison.
-     * Cette méthode permet de comparer les deux états et retourne un entier qui represente la
-     * comparaison.
-     * @param other The other task / L'autre tâche
-     * @return An int that represents the comparison.
-     *         Un entier qui represente la comparaison.
-     *         Return 0 = two object equals
-     *         Return 1 = current object must be first
-     *         Return -1 = the object in param must be first
-     */
     public int compareTo(State other){
         if(getStatue().equalsIgnoreCase(other.getStatue())){
             return 0;

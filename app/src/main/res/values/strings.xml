@@ -27,8 +27,18 @@
     <string name="task_icon">Task Icon</string>
     <string name="have_a_nice_day">Have a nice day.</string>
     <string name="my_tasks">My Tasks</string>
-    <string name="in_progress">In_Progress</string>
-    <string name="completed">Copmpleted</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="in_progress">In Progress</string>
+    <string name="completed">Completed</string>
+    <string name="new_task">New Task</string>
+    <string name="create_task_text">Create a Task</string>
+    <string name="hint_name_task">Enter name task</string>
+    <string name="hint_description_task">Description task</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+    <string name="begin_date">Begin Date</string>
+    <string name="end_date">End Date</string>
+    <string name="context">Context</string>
+    <string name="project_name">Project name</string>
+    <string name="project_url">Project URL</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

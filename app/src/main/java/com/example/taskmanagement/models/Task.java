@@ -1,55 +1,43 @@
 package com.example.taskmanagement.models;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Task {
+public class Task implements Serializable {
     private int id;
-
     private String name;
-
-    private String memonic;
-
     private String description;
-
     private String estimateDuration;
-
     private String beginDate;
-
     private String maxEndDate;
-
     private State stateTask;
-
     private String context;
-
     private String projectName;
-
     private String url;
 
-    /**
-     * The constructor of the task object / Le constructeur de l'objet task
-     * @param id The id of the task
-     * @param name The name of the task
-     * @param memonic The memonic of the task which is link to an image.
-     * @param description The description of the task.
-     * @param duration The estimate duration of the task.
-     * @param beginDate The begin date of the task
-     * @param maxEndDate The max end date of the task.
-     * @param context The context of the task.
-     * @param projectName The name of the project which is link to the task.
-     * @param url An url link to the task / Une url liée à la tâche.
-     */
-    public Task(int id, String name, String memonic, String description, String duration, String beginDate, String maxEndDate, String context, String projectName, String url) {
+    public Task(String name, String description, String duration, String beginDate, String maxEndDate, String context, String projectName, String url) {
         this.name = name;
         this.description = description;
-        this.memonic = memonic;
         this.estimateDuration = duration;
         this.beginDate = beginDate;
         this.maxEndDate = maxEndDate;
-        this.id = id;
+        this.context = context;
+        this.projectName = projectName;
+        this.url = url;
         this.stateTask = new State();
-        this.stateTask.changeState(memonic);
+        this.stateTask.changeState("toDo");
+    }
+
+    public Task(int id, String name, String description, String estimateDuration, String beginDate, String maxEndDate, State stateTask, String context, String projectName, String url) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.estimateDuration = estimateDuration;
+        this.beginDate = beginDate;
+        this.maxEndDate = maxEndDate;
+        this.stateTask = stateTask;
         this.context = context;
         this.projectName = projectName;
         this.url = url;
@@ -93,14 +81,6 @@ public class Task {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getMemonic() {
-        return memonic;
-    }
-
-    public void setMemonic(String memonic) {
-        this.memonic = memonic;
     }
 
     public State getStateTask() {
@@ -154,13 +134,10 @@ public class Task {
             // Parse in Date object to compare it.
             Date dateBegin = sdf.parse(maxEndDate.toString());
             Date dateEnd = sdf.parse(other.maxEndDate.toString());
-
             res = dateBegin.compareTo(dateEnd);
-
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         return res;
     }
 
@@ -171,10 +148,8 @@ public class Task {
     public int compareByDuration(Task other){
         String[] values = estimateDuration.split("h");
         Integer currentDuration = Integer.parseInt(values[0])*60+Integer.parseInt(values[1].split("m")[0]);
-
         values = other.getEstimateDuration().split("h");
         Integer otherDuration = Integer.parseInt(values[0])*60+Integer.parseInt(values[1].split("m")[0]);
-
         return currentDuration.compareTo(otherDuration);
     }
 }

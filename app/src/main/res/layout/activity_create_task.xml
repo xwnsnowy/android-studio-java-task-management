@@ -1,10 +1,175 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.CreateTaskActivity">
+    android:id="@+id/create_task_main"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".activities.TaskCreateActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
+
+            <Button
+                android:id="@+id/back_button"
+                style="@style/ButtonBack"
+                android:contentDescription="@string/back_button_description" />
+
+            <ImageView
+                android:id="@+id/logo_project_management_corp"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/create_task_text"
+                android:src="@drawable/img_home_task" />
+
+<!--            <ImageButton-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:80dp="true"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:visibility="invisible" />-->
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:text="@string/create_task_text"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black" />
+
+        <EditText
+            android:id="@+id/task_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_name_task"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="10dp"/>
+
+        <EditText
+            android:id="@+id/task_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_description_task"
+            android:inputType="textMultiLine|text"
+            android:padding="10dp"
+            android:layout_marginTop="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/hours"
+                android:padding="10dp"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/minutes"
+                android:padding="10dp"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <NumberPicker
+                android:id="@+id/task_duration_hour"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp" />
+
+            <NumberPicker
+                android:id="@+id/task_duration_minutes"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/task_begin_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="false"
+            android:hint="@string/begin_date"
+            android:padding="10dp"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/task_end_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="false"
+            android:hint="@string/end_date"
+            android:padding="10dp"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/task_context"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/context"
+            android:inputType="text"
+            android:padding="10dp"
+            android:maxLines="1"
+            android:layout_marginTop="8dp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/task_project"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:completionThreshold="1"
+            android:hint="@string/project_name"
+            android:inputType="text"
+            android:padding="10dp"
+            android:maxLines="1"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/create_task_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:hint="@string/project_url"
+            android:padding="10dp"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/create_task_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/create_task_text"
+            android:textColor="@android:color/white"
+            android:background="@android:color/black"
+            android:padding="10dp"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

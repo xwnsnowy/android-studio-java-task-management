@@ -49,9 +49,6 @@
             android:layout_gravity="end" />
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- Welcome Text -->
-
-    <!-- Name Text -->
     <TextView
         android:id="@+id/tv_welcome"
         android:layout_width="wrap_content"
@@ -77,7 +74,6 @@
         app:layout_constraintStart_toEndOf="@+id/tv_welcome"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <!-- Have a Nice Day Text -->
     <TextView
         android:id="@+id/tv_have_a_nice_day"
         android:layout_width="wrap_content"
@@ -90,7 +86,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
-    <!-- Tabs -->
+    <!-- New Task Button -->
+    <Button
+        android:id="@+id/btn_new_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/holo_red_dark"
+        android:text="@string/new_task"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"

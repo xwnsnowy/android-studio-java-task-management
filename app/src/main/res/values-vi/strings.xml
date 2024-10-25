@@ -22,4 +22,17 @@
     <string name="my_tasks">Tất cả</string>
     <string name="in_progress">Đang tiến hành</string>
     <string name="completed">Hoàn thành</string>
+    <string name="new_task">Nhiệm vụ mới</string>
+    <string name="create_task_text">Tạo nhiệm vụ</string>
+    <string name="hint_name_task">Nhập tên nhiệm vụ</string>
+    <string name="hint_description_task">Mô tả nhiệm vụ</string>
+    <string name="hours">Giờ</string>
+    <string name="minutes">Phút</string>
+    <string name="begin_date">Ngày bắt đầu</string>
+    <string name="end_date">Ngày kết thúc</string>
+    <string name="context">Ngữ cảnh</string>
+    <string name="project_name">Tên dự án</string>
+    <string name="project_url">URL dự án</string>
+    <string name="hello_blank_fragment">Xin chào đoạn trống</string>
+
 </resources>

@@ -78,7 +78,7 @@
             <!-- Username EditText -->
             <EditText
                 android:id="@+id/et_username"
-                android:layout_width="0dp"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/custom_edittext"
@@ -93,7 +93,7 @@
             <!-- Password EditText -->
             <EditText
                 android:id="@+id/et_password"
-                android:layout_width="0dp"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_edittext"
