@@ -44,4 +44,12 @@
 <!--        <item name="android:background">@drawable/rounded_button_back</item>-->
     </style>
 
+
+    <style name="TabTextAppearance">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TabTextAppearanceSelected">
+        <item name="android:textSize">22sp</item>
+    </style>
 </resources>

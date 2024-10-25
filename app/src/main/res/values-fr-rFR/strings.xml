@@ -17,4 +17,5 @@
     <string name="hint_confirm_password">Confirmez le mot de passe</string>
     <string name="menu">Menu</string>
     <string name="profile">Profil</string>
+    <string name="task_icon">Task Icon</string>
 </resources>

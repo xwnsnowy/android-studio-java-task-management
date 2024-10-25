@@ -3,6 +3,8 @@
     <color name="primaryBackgroundColor">#445ae3</color>
     <color name="secondaryBackgroundColor">#FFEB99</color>
 
+    <color name="unselectedTabColor">#B4F5F5F5</color>
+
     <color name="primaryColor">#445ae3</color>
 
     <color name="white">#FFFFFFFF</color>

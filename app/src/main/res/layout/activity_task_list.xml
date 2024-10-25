@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:thumb="@drawable/thumb"
             android:track="@drawable/track"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
         <!-- Profile Icon -->
         <ImageButton
@@ -47,14 +47,14 @@
             android:contentDescription="@string/profile"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:layout_gravity="end" />
-
     </androidx.appcompat.widget.Toolbar>
 
+    <!-- Welcome Text -->
     <TextView
         android:id="@+id/tv_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="8dp"
         android:text="@string/welcome"
         android:textColor="@android:color/black"
         android:textSize="18sp"
@@ -63,19 +63,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
+    <!-- Name Text -->
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
-        android:padding="16dp"
+        android:layout_marginStart="8dp"
+        android:padding="8dp"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_welcome"
+        app:layout_constraintStart_toEndOf="@+id/tv_welcome"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
-    <!-- Remaining layout content -->
-    <!-- Add your other UI elements here -->
 
+    <!-- Have a Nice Day Text -->
+    <TextView
+        android:id="@+id/tv_have_a_nice_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Have a nice day"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_name"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Tabs -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_have_a_nice_day"
+        app:tabIndicator="@drawable/tab_indicator"
+        app:tabIndicatorFullWidth="true"
+        android:background="@color/secondaryBackgroundColor"
+        app:tabSelectedTextAppearance="@style/TabTextAppearanceSelected"
+        app:tabSelectedTextColor="@android:color/black"
+        app:tabTextAppearance="@style/TabTextAppearance"
+        app:tabTextColor="@color/unselectedTabColor" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
