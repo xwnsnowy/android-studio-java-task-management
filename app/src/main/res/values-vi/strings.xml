@@ -18,4 +18,8 @@
     <string name="menu">Menu</string>
     <string name="profile">Hồ sơ</string>
     <string name="task_icon">Task Icon</string>
+    <string name="have_a_nice_day">Chúc một ngày tốt lành.</string>
+    <string name="my_tasks">Tất cả</string>
+    <string name="in_progress">Đang tiến hành</string>
+    <string name="completed">Hoàn thành</string>
 </resources>

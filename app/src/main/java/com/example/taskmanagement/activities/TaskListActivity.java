@@ -62,18 +62,18 @@ public class TaskListActivity extends AppCompatActivity {
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
-        viewPager.setCurrentItem(2);
+        viewPager.setCurrentItem(0);
 
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             switch (position) {
                 case 0:
-                    tab.setText("My Tasks");
+                    tab.setText(R.string.my_tasks);
                     break;
                 case 1:
-                    tab.setText("In-progress");
+                    tab.setText(R.string.in_progress);
                     break;
                 case 2:
-                    tab.setText("Completed");
+                    tab.setText(R.string.completed);
                     break;
             }
         }).attach();

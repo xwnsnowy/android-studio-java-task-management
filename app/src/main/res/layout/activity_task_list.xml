@@ -50,28 +50,29 @@
     </androidx.appcompat.widget.Toolbar>
 
     <!-- Welcome Text -->
+
+    <!-- Name Text -->
     <TextView
         android:id="@+id/tv_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:layout_marginTop="10sp"
+        android:layout_marginStart="16dp"
         android:text="@string/welcome"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="26sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <!-- Name Text -->
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:padding="8dp"
+        android:layout_marginTop="10sp"
+        android:layout_marginStart="10dp"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/tv_welcome"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
@@ -81,14 +82,13 @@
         android:id="@+id/tv_have_a_nice_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="Have a nice day"
-        android:textColor="@android:color/black"
+        android:layout_marginStart="16dp"
+        android:text="@string/have_a_nice_day"
+        android:textColor="#949191"
         android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_name"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
     <!-- Tabs -->
     <com.google.android.material.tabs.TabLayout
@@ -99,13 +99,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_have_a_nice_day"
-        app:tabIndicator="@drawable/tab_indicator"
-        app:tabIndicatorFullWidth="true"
-        android:background="@color/secondaryBackgroundColor"
-        app:tabSelectedTextAppearance="@style/TabTextAppearanceSelected"
-        app:tabSelectedTextColor="@android:color/black"
         app:tabTextAppearance="@style/TabTextAppearance"
-        app:tabTextColor="@color/unselectedTabColor" />
+        app:tabSelectedTextAppearance="@style/TabTextAppearanceSelected"
+        app:tabIndicatorFullWidth="true"
+        app:tabMode="auto"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="55dp"
+        app:tabPaddingStart="20dp"
+        app:tabPaddingEnd="20dp"
+        app:tabRippleColor="@android:color/transparent"
+        app:tabIndicator="@drawable/tab_active_bg"
+        app:tabIndicatorColor="@android:color/transparent"
+        app:tabIndicatorGravity="center"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@android:color/black" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"

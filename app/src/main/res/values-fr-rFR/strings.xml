@@ -18,4 +18,8 @@
     <string name="menu">Menu</string>
     <string name="profile">Profil</string>
     <string name="task_icon">Task Icon</string>
+    <string name="have_a_nice_day">Passez une bonne journée.</string>
+    <string name="my_tasks">Mes Tâches</string>
+    <string name="in_progress">En cours</string>
+    <string name="completed">Terminé</string>
 </resources>
