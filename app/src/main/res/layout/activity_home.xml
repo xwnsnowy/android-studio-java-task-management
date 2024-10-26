@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryColor">
+    android:background="@color/primaryBackgroundColor">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left"
@@ -24,7 +24,7 @@
     <TextView
         android:id="@+id/tv_be_organized"
         style="@style/TitleTextView"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="4dp"
         android:text="@string/slogan1"
         app:layout_constraintBottom_toTopOf="@+id/tv_start_now"
@@ -63,7 +63,7 @@
     <ImageView
         android:id="@+id/iv_center_image"
         android:layout_width="wrap_content"
-        android:layout_height="360dp"
+        android:layout_height="340dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:src="@drawable/img_home_task"
