@@ -1,14 +1,16 @@
 package com.example.taskmanagement.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.taskmanagement.R;
+import com.example.taskmanagement.activities.TaskDetailActivity;
 import com.example.taskmanagement.models.Task;
 import java.util.List;
 
@@ -46,6 +48,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         private TextView taskEstimatedDuration;
         private TextView taskProject;
         private ImageView taskIcon;
+        private Task currentTask;  // Store current task here
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -56,12 +59,19 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             taskEstimatedDuration = itemView.findViewById(R.id.task_estimated_duration);
             taskProject = itemView.findViewById(R.id.task_project);
             taskIcon = itemView.findViewById(R.id.task_icon);
-            itemView.setOnClickListener(v ->
-                    Toast.makeText(v.getContext(), taskName.getText(), Toast.LENGTH_SHORT).show()
-            );
+
+            itemView.setOnClickListener(v -> {
+                if (currentTask != null) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, TaskDetailActivity.class);
+                    intent.putExtra("taskId", currentTask.getId());
+                    context.startActivity(intent);
+                }
+            });
         }
 
         public void bindData(Task task) {
+            currentTask = task;  // Set current task here
             taskName.setText(task.getName());
             taskDescription.setText(task.getDescription());
             taskState.setText(task.getStateTask().getStatue());

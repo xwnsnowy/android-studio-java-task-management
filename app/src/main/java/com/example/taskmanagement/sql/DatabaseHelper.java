@@ -184,6 +184,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return tasks;
     }
 
+    public Task getTaskById(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_TASK, null, COLUMN_TASK_ID + " = ?", new String[]{String.valueOf(id)}, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            State taskState = new State();
+            taskState.changeState(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_STATE)));
+
+            Task task = new Task(
+                    cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_TASK_ID)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_NAME)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_DESCRIPTION)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_ESTIMATE_DURATION)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_BEGIN_DATE)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_END_DATE)),
+                    taskState,
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_CONTEXT)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_PROJECT)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_URL))
+            );
+            cursor.close();
+            return task;
+        }
+        return null;
+    }
+
     public boolean isLoginValid(String username, String password) {
         String[] columns = { COLUMN_USER_USERNAME };
         SQLiteDatabase db = this.getReadableDatabase();
