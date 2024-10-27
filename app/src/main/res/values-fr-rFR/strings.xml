@@ -33,6 +33,21 @@
     <string name="context">Contexte</string>
     <string name="project_name">Nom du projet</string>
     <string name="project_url">URL du projet</string>
+    <string name="task_name_label">Nom de la tâche</string>
+    <string name="task_description_label">Description</string>
+    <string name="task_state_label">État</string>
+    <string name="task_date_label">Date d\'échéance</string>
+    <string name="task_estimated_duration_label">Durée estimée</string>
+    <string name="task_project_label">Projet</string>
+
+    <string name="edit_task_text">Modifier la tâche</string>
+    <string name="select_state">Sélectionner l\'état</string>
+    <string-array name="task_states">
+        <item>À faire</item>
+        <item>En cours</item>
+        <item>Fermé</item>
+    </string-array>
+
     <string name="hello_blank_fragment">Bonjour fragment vierge</string>
 
 </resources>

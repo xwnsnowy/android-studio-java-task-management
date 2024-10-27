@@ -1,6 +1,7 @@
 package com.example.taskmanagement.activities;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +20,7 @@ public class TaskDetailActivity extends AppCompatActivity {
     private DatabaseHelper dbHelper;
     private TextView taskName, taskDescription, taskDate, taskEstimatedDuration, taskProject, taskState;
     private ImageView taskIcon, btnDelete;
-    private Button btnBack;
+    private Button btnBack, btnUpdate;
 
     private void bindingView() {
         taskName = findViewById(R.id.task_name);
@@ -31,29 +32,40 @@ public class TaskDetailActivity extends AppCompatActivity {
         taskIcon = findViewById(R.id.task_icon);
         btnBack = findViewById(R.id.btn_back);
         btnDelete = findViewById(R.id.btn_delete);
+        btnUpdate = findViewById(R.id.btn_update);
     }
 
     private void bindingAction() {
         btnBack.setOnClickListener(this::onBtnBackClick);
         btnDelete.setOnClickListener(this::onBtnDeleteClick);
+        btnUpdate.setOnClickListener(this::onBtnUpdateClick);
     }
 
     private void bindingData(int taskId) {
         Task task = dbHelper.getTaskById(taskId);
+        Context context = taskName.getContext();
+
         if (task != null) {
-            taskName.setText(task.getName());
-            taskDescription.setText(task.getDescription());
-            taskDate.setText(task.getMaxEndDate());
-            taskEstimatedDuration.setText(task.getEstimateDuration());
-            taskProject.setText(task.getProjectName());
-            taskState.setText(task.getStateTask().getStatue());
-            // Load task icon if applicable
+            taskName.setText(context.getString(R.string.task_name_label) + ": " + task.getName());
+            taskDescription.setText(context.getString(R.string.task_description_label) + ": " + task.getDescription());
+            taskState.setText(context.getString(R.string.task_state_label) + ": " + task.getStateTask().getStatue());
+            taskDate.setText(context.getString(R.string.task_date_label) + ": " + task.getMaxEndDate());
+            taskEstimatedDuration.setText(context.getString(R.string.task_estimated_duration_label) + ": " + task.getEstimateDuration());
+            taskProject.setText(context.getString(R.string.task_project_label) + ": " + task.getProjectName());
         }
     }
 
     private void onBtnBackClick(View view) {
         finish();
     }
+
+    private void onBtnUpdateClick(View view) {
+        int taskId = getIntent().getIntExtra("taskId", -1);
+        Intent intent = new Intent(TaskDetailActivity.this, EditTaskActivity.class);
+        intent.putExtra("taskId", taskId);
+        startActivity(intent);
+    }
+
 
     private void onBtnDeleteClick(View view) {
         int taskId = getIntent().getIntExtra("taskId", -1);

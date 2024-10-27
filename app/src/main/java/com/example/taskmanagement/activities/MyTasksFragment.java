@@ -40,7 +40,7 @@ public class MyTasksFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         dbHelper = new DatabaseHelper(getContext());
-        List<Task> taskList = dbHelper.getTasksByState("toDo");
+        List<Task> taskList = dbHelper.getTasksByState("To Do");
         taskAdapter = new TaskAdapter(taskList);
         recyclerView.setAdapter(taskAdapter);
 
@@ -48,7 +48,7 @@ public class MyTasksFragment extends Fragment {
     }
 
     public void refreshTasks() {
-        List<Task> updatedTasks = dbHelper.getTasksByState("toDo");
+        List<Task> updatedTasks = dbHelper.getTasksByState("To Do");
         taskAdapter.updateTasks(updatedTasks);
     }
 

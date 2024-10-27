@@ -27,7 +27,7 @@ public class Task implements Serializable {
         this.projectName = projectName;
         this.url = url;
         this.stateTask = new State();
-        this.stateTask.changeState("toDo");
+        this.stateTask.changeState("To Do");
     }
 
     public Task(int id, String name, String description, String estimateDuration, String beginDate, String maxEndDate, State stateTask, String context, String projectName, String url) {

@@ -25,17 +25,17 @@ public class State {
      */
     public void changeState(String newState){
         switch (newState) {
-            case "toDo":
+            case "To Do":
                 this.toDo = true;
                 this.doing = false;
                 this.closed = false;
                 break;
-            case "doing":
+            case "In Progress":
                 this.toDo = false;
                 this.doing = true;
                 this.closed = false;
                 break;
-            case "closed":
+            case "Closed":
                 this.toDo = false;
                 this.doing = false;
                 this.closed = true;

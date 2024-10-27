@@ -71,7 +71,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         }
 
         public void bindData(Task task) {
-            currentTask = task;  // Set current task here
+            currentTask = task;
             taskName.setText(task.getName());
             taskDescription.setText(task.getDescription());
             taskState.setText(task.getStateTask().getStatue());

@@ -33,6 +33,20 @@
     <string name="context">Ngữ cảnh</string>
     <string name="project_name">Tên dự án</string>
     <string name="project_url">URL dự án</string>
+    <string name="task_name_label">Tên nhiệm vụ</string>
+    <string name="task_description_label">Mô tả</string>
+    <string name="task_state_label">Trạng thái</string>
+    <string name="task_date_label">Ngày đến hạn</string>
+    <string name="task_estimated_duration_label">Thời lượng ước tính</string>
+    <string name="task_project_label">Dự án</string>
+
+    <string name="select_state">Chọn trạng thái</string>
+    <string-array name="task_states">
+        <item>Việc cần làm</item>
+        <item>Đang tiến hành</item>
+        <item>Đóng</item>
+    </string-array>
+
     <string name="hello_blank_fragment">Xin chào đoạn trống</string>
 
 </resources>

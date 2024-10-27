@@ -33,5 +33,21 @@
     <string name="context">Context</string>
     <string name="project_name">Project name</string>
     <string name="project_url">Project URL</string>
+
+    <string name="task_name_label">Task Name</string>
+    <string name="task_description_label">Description</string>
+    <string name="task_state_label">State</string>
+    <string name="task_date_label">Due Date</string>
+    <string name="task_estimated_duration_label">Estimated Duration</string>
+    <string name="task_project_label">Project</string>
+
+    <string name="edit_task_text">Chỉnh sửa</string>
+    <string name="select_state">Select State</string>
+    <string-array name="task_states">
+        <item>To Do</item>
+        <item>In Progress</item>
+        <item>Closed</item>
+    </string-array>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

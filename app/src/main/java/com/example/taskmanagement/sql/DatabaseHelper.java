@@ -57,7 +57,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + ")";
 
     private final String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
-    private final String DROP_USER_TASK = "DROP TABLE IF EXISTS " + TABLE_TASK;
+    private final String DROP_TASK_TABLE = "DROP TABLE IF EXISTS " + TABLE_TASK;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -107,7 +107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_TASK_ESTIMATE_DURATION, task.getEstimateDuration());
         values.put(COLUMN_TASK_BEGIN_DATE, task.getBeginDate());
         values.put(COLUMN_TASK_END_DATE, task.getMaxEndDate());
-        values.put(COLUMN_TASK_STATE, "toDo");
+        values.put(COLUMN_TASK_STATE, "To Do");
         values.put(COLUMN_TASK_CONTEXT, task.getContext());
         values.put(COLUMN_TASK_PROJECT, task.getProjectName());
         values.put(COLUMN_TASK_URL, task.getUrl());
@@ -209,6 +209,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return null;
     }
+
+    public boolean updateTask(Task task) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TASK_NAME, task.getName());
+        values.put(COLUMN_TASK_DESCRIPTION, task.getDescription());
+        values.put(COLUMN_TASK_STATE, task.getStateTask().getStatue());
+        values.put(COLUMN_TASK_BEGIN_DATE, task.getBeginDate());
+        values.put(COLUMN_TASK_END_DATE, task.getMaxEndDate());
+
+        int rowsUpdated = db.update(TABLE_TASK, values, COLUMN_TASK_ID + " = ?", new String[]{String.valueOf(task.getId())});
+        db.close();
+        return rowsUpdated > 0;
+    }
+
+
 
     public void deleteTask(int taskId) {
         SQLiteDatabase db = this.getWritableDatabase();

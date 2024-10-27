@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/edit_task_main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".activities.EditTaskActivity">
+
+        <!-- Header Section with Logo and Back Button -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
+
+            <Button
+                android:id="@+id/back_button"
+                style="@style/ButtonBack"
+                android:contentDescription="@string/back_button_description" />
+
+            <ImageView
+                android:id="@+id/logo_project_management_corp"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/edit_task_text"
+                android:src="@drawable/img_home_task" />
+
+        </RelativeLayout>
+
+        <!-- Task Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:text="@string/edit_task_text"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black" />
+
+        <!-- Task Name Input -->
+        <EditText
+            android:id="@+id/task_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_name_task"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="10dp"/>
+
+        <!-- Task Description Input -->
+        <EditText
+            android:id="@+id/task_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_description_task"
+            android:inputType="textMultiLine|text"
+            android:padding="10dp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Duration Section with Hours and Minutes -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <NumberPicker
+                android:id="@+id/task_duration_hour"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp" />
+
+            <NumberPicker
+                android:id="@+id/task_duration_minutes"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <!-- Begin and End Date Inputs -->
+        <EditText
+            android:id="@+id/task_begin_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="false"
+            android:hint="@string/begin_date"
+            android:padding="10dp"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/task_end_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="false"
+            android:hint="@string/end_date"
+            android:padding="10dp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Task Context and Project Name Inputs -->
+        <EditText
+            android:id="@+id/task_context"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/context"
+            android:inputType="text"
+            android:padding="10dp"
+            android:maxLines="1"
+            android:layout_marginTop="8dp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/task_project"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:completionThreshold="1"
+            android:hint="@string/project_name"
+            android:inputType="text"
+            android:padding="10dp"
+            android:maxLines="1"
+            android:layout_marginTop="8dp" />
+
+        <!-- Task URL Input -->
+        <EditText
+            android:id="@+id/create_task_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:hint="@string/project_url"
+            android:padding="10dp"
+            android:inputType="text"
+            android:layout_marginTop="8dp" />
+
+        <!-- Task State Spinner -->
+        <Spinner
+            android:id="@+id/task_state_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:spinnerMode="dropdown"
+            android:prompt="@string/select_state" />
+
+        <!-- Update Task Button -->
+        <Button
+            android:id="@+id/update_task_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_task_text"
+            android:textColor="@android:color/white"
+            android:background="@android:color/black"
+            android:padding="10dp"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

@@ -39,7 +39,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="Task Name"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#fff" />
+            android:textColor="@android:color/black" />
 
         <!-- Task Description -->
         <TextView
@@ -50,7 +50,7 @@
             android:layout_marginTop="4dp"
             android:text="Task Description"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="#fff" />
+            android:textColor="@android:color/black" />
     </LinearLayout>
 
     <!-- Detail Icon -->
