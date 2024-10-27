@@ -30,6 +30,16 @@
         <item name="android:background">@drawable/custom_button_background</item>
     </style>
 
+    <style name="ButtonDelete" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">@color/primaryBackgroundColor</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:background">@drawable/custom_button_background</item>
+    </style>
+
     <style name="ButtonAddTask" >
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

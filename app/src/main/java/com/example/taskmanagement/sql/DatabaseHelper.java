@@ -210,6 +210,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    public void deleteTask(int taskId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_TASK, COLUMN_TASK_ID + " = ?", new String[]{String.valueOf(taskId)});
+        db.close();
+    }
+
     public boolean isLoginValid(String username, String password) {
         String[] columns = { COLUMN_USER_USERNAME };
         SQLiteDatabase db = this.getReadableDatabase();

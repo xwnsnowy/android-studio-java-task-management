@@ -28,6 +28,10 @@ public class MyTasksFragment extends Fragment {
     private TaskAdapter taskAdapter;
     private DatabaseHelper dbHelper;
 
+    public static MyTasksFragment newInstance() {
+        return new MyTasksFragment();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

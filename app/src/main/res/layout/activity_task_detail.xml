@@ -5,13 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.TaskDetailActivity">
+    tools:context=".activities.TaskDetailActivity"
+    android:padding="16dp">
 
     <!-- Back Button -->
     <Button
         android:id="@+id/btn_back"
-        android:layout_marginStart="16dp"
         style="@style/ButtonBack"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,6 +26,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
         app:srcCompat="@drawable/task_icon" />
+
+    <ImageView
+        android:id="@+id/btn_delete"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@drawable/baseline_delete_24"/>
 
     <!-- Task Name -->
     <TextView
@@ -106,4 +116,27 @@
         app:layout_constraintTop_toBottomOf="@id/task_project"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Buttons container -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/task_state"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="120dp"
+            style="@style/ButtonStyle"
+            android:fontFamily="@font/poppins_medium"
+            android:backgroundTint="@android:color/transparent"
+            android:text="Update"
+            android:drawableStart="@drawable/ic_edit_task_resized"
+            android:padding="8dp"
+/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
