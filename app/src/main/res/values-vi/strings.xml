@@ -40,6 +40,7 @@
     <string name="task_estimated_duration_label">Thời lượng ước tính</string>
     <string name="task_project_label">Dự án</string>
 
+    <string name="edit_task_text">Chỉnh sửa</string>
     <string name="select_state">Chọn trạng thái</string>
     <string-array name="task_states">
         <item>Việc cần làm</item>

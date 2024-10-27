@@ -53,6 +53,7 @@
     <string-array name="task_states">
         <item>To Do</item>
         <item>In Progress</item>
+        <item>Completed</item>
         <item>Closed</item>
     </string-array>
 

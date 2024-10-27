@@ -9,6 +9,7 @@ public class Constants {
     public static final String TODO = "To Do";
     public static final String DOING = "In Progress";
     public static final String CLOSED = "Closed";
+    public static final String COMPLETED = "Completed";
     public static final String JSON_EXTENSION = ".json";
     public static final int NB_MAX_LETTER_IN_DESC = 35;
     public static final String NAME = "Name";

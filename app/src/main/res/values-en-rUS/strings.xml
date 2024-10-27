@@ -41,7 +41,7 @@
     <string name="task_estimated_duration_label">Estimated Duration</string>
     <string name="task_project_label">Project</string>
 
-    <string name="edit_task_text">Chỉnh sửa</string>
+    <string name="edit_task_text">Edit Task</string>
     <string name="select_state">Select State</string>
     <string-array name="task_states">
         <item>To Do</item>
