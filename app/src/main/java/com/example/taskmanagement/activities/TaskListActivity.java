@@ -34,10 +34,12 @@ public class TaskListActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences userPrefs;
     private DatabaseHelper databaseHelper;
-    private ImageButton btnMenu;
+    private ImageButton btnMenu, btnProfile;
     private TabLayout tabLayout;
     private ViewPager2 viewPager;
     private Button btnNewTask;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,9 @@ public class TaskListActivity extends AppCompatActivity {
         applyNightMode();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
+
+        preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        editor = preferences.edit();
 
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
@@ -89,6 +94,7 @@ public class TaskListActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
         btnNewTask = findViewById(R.id.btn_new_task);
+        btnProfile = findViewById(R.id.profile_icon);
     }
 
     private void bindingAction() {
@@ -111,6 +117,7 @@ public class TaskListActivity extends AppCompatActivity {
 
         // Set action for the menu button
         btnMenu.setOnClickListener(this::showPopupMenu);
+        btnProfile.setOnClickListener(this::showPopupMenuProfile);
         btnNewTask.setOnClickListener(this::onBtnNewTaskClick);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -157,6 +164,29 @@ public class TaskListActivity extends AppCompatActivity {
                 return true;
             } else if (itemId == R.id.menu_item3) {
                 // Handle menu_item3 action here
+                return true;
+            } else {
+                return false;
+            }
+        });
+        popupMenu.show();
+    }
+
+    private void showPopupMenuProfile(View view) {
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        MenuInflater inflater = popupMenu.getMenuInflater();
+        inflater.inflate(R.menu.menu_profile, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.menu_item1) {
+                // Logout logic
+                editor.remove("currentUser");
+                editor.apply();
+                // Redirect to HomeActivity
+                Intent intent = new Intent(TaskListActivity.this, HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
                 return true;
             } else {
                 return false;

@@ -7,17 +7,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/ScreenBackground"
-    tools:context=".activities.TaskListActivity">
+    tools:context=".activities.TaskListActivity"
+    >
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:outlineProvider="bounds"
+        android:elevation="2dp"
+        >
 
         <!-- Menu Button -->
         <ImageButton
@@ -46,7 +49,8 @@
             android:src="@drawable/baseline_person_24"
             android:contentDescription="@string/profile"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_gravity="end" />
+            android:layout_gravity="end"
+            android:layout_marginRight="10dp"/>
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
@@ -54,11 +58,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/welcome"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/poppins_semibold"
+        android:text="@string/welcome"
         android:textColor="@android:color/black"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
@@ -67,11 +71,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:layout_marginStart="8dp"
         android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/tv_welcome"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
@@ -81,19 +84,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="2dp"
-        android:fontFamily="@font/poppins_lightitalic"
+        android:fontFamily="@font/poppins_medium"
         android:text="@string/have_a_nice_day"
         android:textColor="#949191"
-        android:textSize="18sp"
-        android:textStyle="italic"
+        android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
     <!-- New Task Button -->
     <Button
         android:id="@+id/btn_new_task"
-        android:layout_width="110dp"
         style="@style/ButtonAddTask"
+        android:layout_width="110dp"
+        android:layout_marginTop="34dp"
         android:text="@string/new_task"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />

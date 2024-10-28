@@ -48,6 +48,11 @@
         <item>Đóng</item>
     </string-array>
 
+    <string name="change_language">Thay đổi ngôn ngữ</string>
+    <string name="my_profile">Hồ sơ của tôi</string>
+    <string name="logout">Đăng xuất</string>
+
+
     <string name="hello_blank_fragment">Xin chào đoạn trống</string>
 
 </resources>

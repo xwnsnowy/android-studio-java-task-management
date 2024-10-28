@@ -48,6 +48,10 @@
         <item>Fermé</item>
     </string-array>
 
+    <string name="change_language">Changer de langue</string>
+    <string name="my_profile">Mon profil</string>
+    <string name="logout">Se déconnecter</string>
+
     <string name="hello_blank_fragment">Bonjour fragment vierge</string>
 
 </resources>
