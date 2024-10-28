@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -22,11 +25,15 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.taskmanagement.R;
+import com.example.taskmanagement.adapter.TaskAdapter;
 import com.example.taskmanagement.adapter.ViewPagerAdapter;
+import com.example.taskmanagement.models.Task;
 import com.example.taskmanagement.models.User;
 import com.example.taskmanagement.sql.DatabaseHelper;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.util.List;
 
 public class TaskListActivity extends AppCompatActivity {
 
@@ -40,6 +47,9 @@ public class TaskListActivity extends AppCompatActivity {
     private Button btnNewTask;
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
+    private EditText searchContent;
+    private TaskAdapter taskAdapter;
+    private ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +78,10 @@ public class TaskListActivity extends AppCompatActivity {
         TextView tvWelcome = findViewById(R.id.tv_name);
         tvWelcome.setText(user != null ? user.getName() + "!" : "Guest!");
 
+        bindingAction();
+
+
+
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.setCurrentItem(0);
@@ -85,6 +99,28 @@ public class TaskListActivity extends AppCompatActivity {
                     break;
             }
         }).attach();
+
+        searchContent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String query = s.toString();
+
+                Fragment currentFragment = viewPagerAdapter.getFragment(viewPager.getCurrentItem());
+                if (currentFragment instanceof TaskSearchListener) {
+                    ((TaskSearchListener) currentFragment).onSearchQuery(query);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+    }
+
+    public interface TaskSearchListener {
+        void onSearchQuery(String query);
     }
 
     private void bindingView() {
@@ -95,6 +131,7 @@ public class TaskListActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.view_pager);
         btnNewTask = findViewById(R.id.btn_new_task);
         btnProfile = findViewById(R.id.profile_icon);
+        searchContent = findViewById(R.id.search_content);
     }
 
     private void bindingAction() {

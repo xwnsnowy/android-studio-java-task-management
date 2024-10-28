@@ -11,27 +11,26 @@ import com.example.taskmanagement.activities.MyTasksFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
 
+    private final Fragment[] fragments;
+
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
+        fragments = new Fragment[]{new MyTasksFragment(), new InProgressFragment(), new CompletedFragment()};
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        switch (position) {
-            case 0:
-                return new MyTasksFragment();
-            case 1:
-                return new InProgressFragment();
-            case 2:
-                return new CompletedFragment();
-            default:
-                return new MyTasksFragment();
-        }
+        return fragments[position];
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return fragments.length;
+    }
+
+    // Get a fragment by position
+    public Fragment getFragment(int position) {
+        return fragments[position];
     }
 }

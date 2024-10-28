@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.taskmanagement.R;
-import com.example.taskmanagement.adapter.TaskAdapter;
 import com.example.taskmanagement.adapter.TaskListAdapter;
 import com.example.taskmanagement.models.Task;
 import com.example.taskmanagement.sql.DatabaseHelper;
@@ -23,7 +22,7 @@ import java.util.List;
  * Use the {@link MyTasksFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyTasksFragment extends Fragment {
+public class MyTasksFragment extends Fragment implements TaskListActivity.TaskSearchListener {
 
     private RecyclerView recyclerView;
     private TaskListAdapter taskAdapter;
@@ -46,6 +45,13 @@ public class MyTasksFragment extends Fragment {
         recyclerView.setAdapter(taskAdapter);
 
         return view;
+    }
+
+    @Override
+    public void onSearchQuery(String query) {
+        if (taskAdapter != null) {
+            taskAdapter.getFilter().filter(query);
+        }
     }
 
     public void refreshTasks() {
