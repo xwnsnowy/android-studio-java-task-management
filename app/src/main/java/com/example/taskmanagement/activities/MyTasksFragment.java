@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.taskmanagement.R;
 import com.example.taskmanagement.adapter.TaskAdapter;
+import com.example.taskmanagement.adapter.TaskListAdapter;
 import com.example.taskmanagement.models.Task;
 import com.example.taskmanagement.sql.DatabaseHelper;
 
@@ -25,7 +26,7 @@ import java.util.List;
 public class MyTasksFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private TaskAdapter taskAdapter;
+    private TaskListAdapter taskAdapter;
     private DatabaseHelper dbHelper;
 
     public static MyTasksFragment newInstance() {
@@ -41,7 +42,7 @@ public class MyTasksFragment extends Fragment {
 
         dbHelper = new DatabaseHelper(getContext());
         List<Task> taskList = dbHelper.getTasksByState("To Do");
-        taskAdapter = new TaskAdapter(taskList);
+        taskAdapter = new TaskListAdapter(taskList);
         recyclerView.setAdapter(taskAdapter);
 
         return view;

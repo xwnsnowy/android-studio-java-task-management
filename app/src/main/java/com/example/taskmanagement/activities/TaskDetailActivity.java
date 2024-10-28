@@ -3,7 +3,11 @@ package com.example.taskmanagement.activities;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -46,12 +50,33 @@ public class TaskDetailActivity extends AppCompatActivity {
         Context context = taskName.getContext();
 
         if (task != null) {
-            taskName.setText(context.getString(R.string.task_name_label) + ": " + task.getName());
-            taskDescription.setText(context.getString(R.string.task_description_label) + ": " + task.getDescription());
-            taskState.setText(context.getString(R.string.task_state_label) + ": " + task.getStateTask().getStatue());
-            taskDate.setText(context.getString(R.string.task_date_label) + ": " + task.getMaxEndDate());
-            taskEstimatedDuration.setText(context.getString(R.string.task_estimated_duration_label) + ": " + task.getEstimateDuration());
-            taskProject.setText(context.getString(R.string.task_project_label) + ": " + task.getProjectName());
+            String taskNameLabel = context.getString(R.string.task_name_label);
+            String taskNameText = taskNameLabel + ": " + task.getName();
+            taskName.setText(createBoldSpannable(taskNameText, taskNameLabel.length()));
+
+            String taskDescriptionLabel = context.getString(R.string.task_description_label);
+            String taskDescriptionText = taskDescriptionLabel + ": " + task.getDescription();
+            taskDescription.setText(createBoldSpannable(taskDescriptionText, taskDescriptionLabel.length()));
+
+
+            String taskStateLabel = context.getString(R.string.task_state_label);
+            String taskStateText = taskStateLabel + ": " + task.getStateTask().getStatue();
+            taskState.setText(createBoldSpannable(taskStateText, taskStateLabel.length()));
+
+
+            String taskDateLabel = context.getString(R.string.task_date_label);
+            String taskDateText = taskDateLabel + ": " + task.getMaxEndDate();
+            taskDate.setText(createBoldSpannable(taskDateText, taskDateLabel.length()));
+
+
+            String taskEstimatedDurationLabel = context.getString(R.string.task_estimated_duration_label);
+            String taskEstimatedDurationText = taskEstimatedDurationLabel + ": " + task.getEstimateDuration();
+            taskEstimatedDuration.setText(createBoldSpannable(taskEstimatedDurationText, taskEstimatedDurationLabel.length()));
+
+
+            String taskProjectLabel = context.getString(R.string.task_project_label);
+            String taskProjectText = taskProjectLabel + ": " + task.getProjectName();
+            taskProject.setText(createBoldSpannable(taskProjectText, taskProjectLabel.length()));
         }
     }
 
@@ -92,6 +117,11 @@ public class TaskDetailActivity extends AppCompatActivity {
 
     }
 
+    private SpannableString createBoldSpannable(String text, int labelLength) {
+        SpannableString spannableString = new SpannableString(text);
+        spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, labelLength, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return spannableString;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

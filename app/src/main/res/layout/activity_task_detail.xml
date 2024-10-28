@@ -5,8 +5,41 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primaryBackgroundColor"
     tools:context=".activities.TaskDetailActivity"
-    android:padding="16dp">
+    >
+    <ImageView
+        android:id="@+id/ellipse"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:layout_marginTop="-100dp"
+        android:src="@drawable/ellipse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ellipse2"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:layout_marginStart="-50dp"
+        android:layout_marginTop="90dp"
+        android:src="@drawable/ellipse2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/task_detail_title"
+        style="@style/TitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Detail Task"
+        android:textColor="@android:color/holo_blue_bright"
+        app:layout_constraintBottom_toTopOf="@+id/layout_task_details_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_icon" />
 
     <!-- Back Button -->
     <Button
@@ -19,124 +52,126 @@
     <!-- Task Icon/Image -->
     <ImageView
         android:id="@+id/task_icon"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="120dp"
+        android:layout_height="140dp"
         android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/layout_task_details_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/task_icon" />
 
     <ImageView
         android:id="@+id/btn_delete"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/baseline_delete_24"/>
+        app:srcCompat="@drawable/baseline_delete_24" />
 
-    <!-- Task Name -->
-    <TextView
-        android:id="@+id/task_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:text="Task Name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#333"
-        app:layout_constraintTop_toBottomOf="@id/task_icon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp" />
-
-    <!-- Task Description -->
-    <TextView
-        android:id="@+id/task_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Task Description"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#666"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/task_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.8" />
-
-    <!-- Task Date -->
-    <TextView
-        android:id="@+id/task_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Due Date: 2024-12-25"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#666"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/task_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Task Estimated Duration -->
-    <TextView
-        android:id="@+id/task_estimated_duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Est. Duration: 2 hours"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#666"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/task_date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Task Project -->
-    <TextView
-        android:id="@+id/task_project"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Project: Task Management App"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#666"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/task_estimated_duration"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Task State -->
-    <TextView
-        android:id="@+id/task_state"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/state_background"
-        android:padding="4dp"
-        android:text="In Progress"
-        android:textColor="#FF4081"
-        app:layout_constraintTop_toBottomOf="@id/task_project"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Buttons container -->
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@id/task_state"
+        android:id="@+id/layout_task_details_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
+        android:layout_marginTop="60dp"
+        android:layout_weight="1"
+        android:background="@drawable/task_detail_background"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/task_icon">
 
-        <Button
-            android:id="@+id/btn_update"
-            android:layout_width="120dp"
-            style="@style/ButtonStyle"
-            android:fontFamily="@font/poppins_medium"
-            android:backgroundTint="@android:color/transparent"
-            android:text="Update"
-            android:drawableStart="@drawable/ic_edit_task_resized"
-            android:padding="8dp"
-/>
+        <!-- Task Name -->
+        <TextView
+            android:id="@+id/task_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="Task Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#666"
+            android:textSize="24sp" />
+
+        <!-- Task Description -->
+        <TextView
+            android:id="@+id/task_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="Task Description"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#666"
+            android:textSize="24sp" />
+        <!-- Task Date -->
+        <TextView
+            android:id="@+id/task_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="Due Date: 2024-12-25"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#666"
+            android:textSize="24sp" />
+
+        <!-- Task Estimated Duration -->
+        <TextView
+            android:id="@+id/task_estimated_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="Est. Duration: 2 hours"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#666"
+            android:textSize="24sp" />
+
+        <!-- Task Project -->
+        <TextView
+            android:id="@+id/task_project"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="Project: Task Management App"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#666"
+            android:textSize="24sp" />
+
+        <!-- Task State -->
+        <TextView
+            android:id="@+id/task_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/state_background"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="In Progress"
+            android:textColor="#FF4081"
+            android:textSize="24sp" />
+
+        <!-- Buttons container -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_update"
+                style="@style/ButtonStyle"
+                android:layout_width="125dp"
+                android:padding="8dp"
+                android:text="Update Task" />
+        </LinearLayout>
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
