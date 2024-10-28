@@ -2,7 +2,6 @@ package com.example.taskmanagement.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,7 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.taskmanagement.R;
 import com.example.taskmanagement.models.Task;
-import com.example.taskmanagement.sql.DatabaseHelper;
+import com.example.taskmanagement.database.DatabaseHelper;
 
 public class EditTaskActivity extends AppCompatActivity {
 

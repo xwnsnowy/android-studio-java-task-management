@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.taskmanagement.R;
-import com.example.taskmanagement.sql.DatabaseHelper;
+import com.example.taskmanagement.database.DatabaseHelper;
 import com.example.taskmanagement.models.User;
 
 public class RegisterActivity extends AppCompatActivity {

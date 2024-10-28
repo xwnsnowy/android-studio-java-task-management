@@ -42,10 +42,12 @@
 
     <string name="edit_task_text">Chỉnh sửa</string>
     <string name="select_state">Chọn trạng thái</string>
+
     <string-array name="task_states">
-        <item>Việc cần làm</item>
-        <item>Đang tiến hành</item>
-        <item>Đóng</item>
+        <item>Cần làm</item>
+        <item>Đang thực hiện</item>
+        <item>Hoàn thành</item>
+        <item>Đã đóng</item>
     </string-array>
 
     <string name="change_language">Thay đổi ngôn ngữ</string>

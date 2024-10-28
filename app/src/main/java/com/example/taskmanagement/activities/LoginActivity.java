@@ -13,8 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.taskmanagement.R;
-import com.example.taskmanagement.models.User;
-import com.example.taskmanagement.sql.DatabaseHelper;
+import com.example.taskmanagement.database.DatabaseHelper;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText etUsername, etPassword;

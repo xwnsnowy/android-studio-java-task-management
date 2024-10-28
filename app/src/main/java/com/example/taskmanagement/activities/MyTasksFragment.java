@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.example.taskmanagement.R;
 import com.example.taskmanagement.adapter.TaskListAdapter;
 import com.example.taskmanagement.models.Task;
-import com.example.taskmanagement.sql.DatabaseHelper;
+import com.example.taskmanagement.database.DatabaseHelper;
 
 import java.util.List;
 

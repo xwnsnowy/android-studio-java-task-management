@@ -42,9 +42,11 @@
 
     <string name="edit_task_text">Modifier la tâche</string>
     <string name="select_state">Sélectionner l\'état</string>
+    
     <string-array name="task_states">
         <item>À faire</item>
         <item>En cours</item>
+        <item>Terminé</item>
         <item>Fermé</item>
     </string-array>
 

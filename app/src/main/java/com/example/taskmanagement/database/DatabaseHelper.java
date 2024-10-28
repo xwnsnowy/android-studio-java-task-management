@@ -1,4 +1,4 @@
-package com.example.taskmanagement.sql;
+package com.example.taskmanagement.database;
 
 import android.content.ContentValues;
 import android.content.Context;

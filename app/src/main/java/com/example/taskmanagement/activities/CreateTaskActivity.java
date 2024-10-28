@@ -3,7 +3,6 @@ package com.example.taskmanagement.activities;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -18,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.taskmanagement.R;
 import com.example.taskmanagement.models.Task;
-import com.example.taskmanagement.sql.DatabaseHelper;
+import com.example.taskmanagement.database.DatabaseHelper;
 
 import java.util.Calendar;
 

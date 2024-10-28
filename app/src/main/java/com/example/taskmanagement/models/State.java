@@ -1,9 +1,9 @@
 package com.example.taskmanagement.models;
 
-import static com.example.taskmanagement.Constants.CLOSED;
-import static com.example.taskmanagement.Constants.DOING;
-import static com.example.taskmanagement.Constants.TODO;
-import static com.example.taskmanagement.Constants.COMPLETED;
+import static com.example.taskmanagement.utils.Constants.CLOSED;
+import static com.example.taskmanagement.utils.Constants.DOING;
+import static com.example.taskmanagement.utils.Constants.TODO;
+import static com.example.taskmanagement.utils.Constants.COMPLETED;
 
 public class State {
     private boolean toDo;

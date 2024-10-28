@@ -1,4 +1,4 @@
-package com.example.taskmanagement;
+package com.example.taskmanagement.utils;
 
 public class Constants {
     public static final int SPLASH_SCREEN_DELAY = 3000;
@@ -24,7 +24,7 @@ public class Constants {
     public static final String[] AVAILABLE_LANGUAGE = {"Français", "English", "Deutsch"};
     public static final String TASK_ID = "taskId";
 
-    public static int currentSort; // Allow to have the current sort chosen by the user
+    public static int currentSort;
     public static String currentUsername;
 
 }

@@ -1,8 +1,7 @@
-package com.example.taskmanagement;
+package com.example.taskmanagement.utils;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 
 import com.example.taskmanagement.models.Task;
 
@@ -24,10 +23,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.taskmanagement.Constants.ID;
-import static com.example.taskmanagement.Constants.JSON_EXTENSION;
-import static com.example.taskmanagement.Constants.TASK;
-import static com.example.taskmanagement.Constants.currentUsername;
+import static com.example.taskmanagement.utils.Constants.ID;
+import static com.example.taskmanagement.utils.Constants.JSON_EXTENSION;
+import static com.example.taskmanagement.utils.Constants.TASK;
+import static com.example.taskmanagement.utils.Constants.currentUsername;
 
 /**
  * This class centralizes method that can be used in differents class.
@@ -140,97 +139,6 @@ public class Util {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * This method allows to find every project of the current user.
-     * Cette méthode permet de trouver tous les projets de l'utilisateur.
-     * @param context The context of the activity.
-     * @return An arraylist which contains the name of every project.
-     */
-    public static ArrayList<String> findProjects(Context context){
-        ArrayList<String> projects = new ArrayList<>();
-
-        try{
-            // The json file
-            JSONObject json = Util.readJsonFile(currentUsername+ JSON_EXTENSION, context); // Recupère le json de l'utilisateur
-
-            // The task list
-            JSONArray taskList = json.getJSONArray("Task"); // Recupère ses taches
-
-            for (int i = 0; i < taskList.length(); i++) {
-                JSONObject task = taskList.getJSONObject(i);
-                if(task.has("Project")){
-                    String projectName = task.getString("Project");
-                    if(!projects.contains(projectName)){
-                        projects.add(projectName);
-                    }
-                }
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return projects;
-    }
-
-    /**
-     * This method allows to find the position of of the task in the json with his id.
-     * Cette méthode permet de trouver la position d'une tâche dans le json avec son id.
-     * @param id The unique number that reference the task / Le nombre unique qui reference la tâche
-     * @param context The context of the activity / Le contexte  des activité.
-     * @return The position in the json / La position dans le json.
-     */
-    public static int findPositionWithId(int id, Context context){
-        try{
-            // The json file
-            JSONObject json = Util.readJsonFile(currentUsername+ JSON_EXTENSION, context); // Recupère le json de l'utilisateur
-
-            // The task list
-            JSONArray taskList = json.getJSONArray("Task"); // Recupère ses taches
-
-            for (int i = 0; i < taskList.length(); i++) {
-                JSONObject task = taskList.getJSONObject(i);
-                if(task.get(ID).equals(id)){
-                    return i;
-                }
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    /**
-     * This method allows to find the next free id by finding the highest id and add one.
-     * @param fileName The name of the json file / Le nom du fichier json.
-     * @param context The context of the activity.
-     * @return The next free id / Le prochain id libre.
-     */
-    public static int findId(String fileName, Context context){
-        int maxId = 0;
-        try{
-            // The json file
-            JSONObject json = Util.readJsonFile(fileName, context); // Recupère le json de l'utilisateur
-            // The task list
-            JSONArray taskList = json.getJSONArray(TASK); // Recupère ses taches
-            maxId = 0;
-
-            for (int i = 0; i < taskList.length(); i++) {
-                JSONObject task = taskList.getJSONObject(i);
-                int value = task.getInt(ID);
-                if(value >= maxId){
-                    maxId = value;
-                }
-            }
-            maxId++;
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return maxId;
     }
 
     /**
