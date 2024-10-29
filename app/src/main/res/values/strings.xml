@@ -27,8 +27,9 @@
     <string name="task_icon">Task Icon</string>
     <string name="have_a_nice_day">Have a nice day.</string>
     <string name="my_tasks">My Tasks</string>
-    <string name="in_progress">In Progress</string>
-    <string name="completed">Completed</string>
+    <string name="in_progress_2">In Progress</string>
+    <string name="completed_2">Complete</string>
+
     <string name="new_task">+ Add Task</string>
     <string name="create_task_text">Create a Task</string>
     <string name="hint_name_task">Enter name task</string>
@@ -56,6 +57,10 @@
         <item>Completed</item>
         <item>Closed</item>
     </string-array>
+    <string name="to_do">To Do</string>
+    <string name="in_progress">In Progress</string>
+    <string name="completed">Completed</string>
+    <string name="closed">Closed</string>
 
     <string name="change_language">Change Language</string>
     <string name="my_profile">My Profile</string>

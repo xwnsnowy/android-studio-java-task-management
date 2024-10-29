@@ -20,8 +20,9 @@
     <string name="task_icon">Task Icon</string>
     <string name="have_a_nice_day">Chúc một ngày tốt lành.</string>
     <string name="my_tasks">Tất cả</string>
-    <string name="in_progress">Đang tiến hành</string>
-    <string name="completed">Hoàn thành</string>
+    <string name="in_progress_2">Đang thực hiện</string>
+    <string name="completed_2">Hoàn thành</string>
+
     <string name="new_task">Nhiệm vụ mới</string>
     <string name="create_task_text">Tạo nhiệm vụ</string>
     <string name="hint_name_task">Nhập tên nhiệm vụ</string>
@@ -44,11 +45,16 @@
     <string name="select_state">Chọn trạng thái</string>
 
     <string-array name="task_states">
-        <item>Cần làm</item>
-        <item>Đang thực hiện</item>
-        <item>Hoàn thành</item>
-        <item>Đã đóng</item>
+        <item>To Do</item>
+        <item>In Progress</item>
+        <item>Completed</item>
+        <item>Closed</item>
     </string-array>
+
+    <string name="to_do">To Do</string>
+    <string name="in_progress">In Progress</string>
+    <string name="completed">Completed</string>
+    <string name="closed">Closed</string>
 
     <string name="change_language">Thay đổi ngôn ngữ</string>
     <string name="my_profile">Hồ sơ của tôi</string>

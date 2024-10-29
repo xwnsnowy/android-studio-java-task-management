@@ -70,11 +70,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             });
         }
 
+        private Context context;
         public void bindData(Task task) {
             currentTask = task;
             taskName.setText(task.getName());
             taskDescription.setText(task.getDescription());
-            taskState.setText(task.getStateTask().getStatue());
+            taskState.setText(task.getStateTask().getStatue(context));
             taskDate.setText(task.getMaxEndDate());
             taskEstimatedDuration.setText(task.getEstimateDuration());
             taskProject.setText(task.getProjectName());

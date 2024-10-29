@@ -60,7 +60,7 @@ public class TaskDetailActivity extends AppCompatActivity {
 
 
             String taskStateLabel = context.getString(R.string.task_state_label);
-            String taskStateText = taskStateLabel + ": " + task.getStateTask().getStatue();
+            String taskStateText = taskStateLabel + ": " + task.getStateTask().getStatue(this);
             taskState.setText(createBoldSpannable(taskStateText, taskStateLabel.length()));
 
 

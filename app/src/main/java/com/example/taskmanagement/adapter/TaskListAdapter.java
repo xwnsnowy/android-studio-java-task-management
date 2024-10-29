@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,8 +20,10 @@ import java.util.List;
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHolder> implements Filterable {
     private List<Task> tasks;
     private List<Task> filteredTasks;
+    private Context context;
 
-    public TaskListAdapter(List<Task> tasks) {
+    public TaskListAdapter(Context context, List<Task> tasks) {
+        this.context = context;
         this.tasks = tasks;
         this.filteredTasks = new ArrayList<>(tasks);
     }
@@ -30,8 +31,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.task_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.task_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -96,7 +96,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
 
             itemView.setOnClickListener(v -> {
                 if (currentTask != null) {
-                    Context context = v.getContext();
                     Intent intent = new Intent(context, TaskDetailActivity.class);
                     intent.putExtra("taskId", currentTask.getId());
                     context.startActivity(intent);
@@ -108,7 +107,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
             currentTask = task;
             taskName.setText(task.getName());
             taskDescription.setText(task.getDescription());
-            taskState.setText(task.getStateTask().getStatue());
+            taskState.setText(task.getStateTask().getStatue(context));
         }
     }
 

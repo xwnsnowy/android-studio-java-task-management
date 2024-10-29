@@ -1,5 +1,9 @@
 package com.example.taskmanagement.models;
 
+import android.content.Context;
+
+import com.example.taskmanagement.R;
+
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,17 +21,27 @@ public class Task implements Serializable {
     private String projectName;
     private String url;
 
-    public Task(String name, String description, String duration, String beginDate, String maxEndDate, String context, String projectName, String url) {
+    public Task(
+            Context context,
+            String name,
+            String description,
+            String duration,
+            String beginDate,
+            String maxEndDate,
+            String taskContext,
+            String projectName,
+            String url)
+    {
         this.name = name;
         this.description = description;
         this.estimateDuration = duration;
         this.beginDate = beginDate;
         this.maxEndDate = maxEndDate;
-        this.context = context;
+        this.context = taskContext;
         this.projectName = projectName;
         this.url = url;
         this.stateTask = new State();
-        this.stateTask.changeState("To Do");
+        this.stateTask.changeState(context.getString(com.example.taskmanagement.R.string.to_do), context);
     }
 
     public Task(int id, String name, String description, String estimateDuration, String beginDate, String maxEndDate, State stateTask, String context, String projectName, String url) {
@@ -141,15 +155,5 @@ public class Task implements Serializable {
         return res;
     }
 
-    public int compareByState(Task other){
-        return stateTask.compareTo(other.getStateTask());
-    }
 
-    public int compareByDuration(Task other){
-        String[] values = estimateDuration.split("h");
-        Integer currentDuration = Integer.parseInt(values[0])*60+Integer.parseInt(values[1].split("m")[0]);
-        values = other.getEstimateDuration().split("h");
-        Integer otherDuration = Integer.parseInt(values[0])*60+Integer.parseInt(values[1].split("m")[0]);
-        return currentDuration.compareTo(otherDuration);
-    }
 }

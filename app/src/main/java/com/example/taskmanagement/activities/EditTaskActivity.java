@@ -1,5 +1,6 @@
 package com.example.taskmanagement.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -42,8 +43,8 @@ public class EditTaskActivity extends AppCompatActivity {
             currentTask = dbHelper.getTaskById(taskId);
             loadTaskData(currentTask);
         }
-        Spinner taskStateSpinner = findViewById(R.id.task_state_spinner);
 
+        // Set up spinner for task states
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.task_states,
@@ -63,7 +64,7 @@ public class EditTaskActivity extends AppCompatActivity {
             taskBeginDate.setText(task.getBeginDate());
             taskEndDate.setText(task.getMaxEndDate());
             taskProject.setText(task.getProjectName());
-            setSpinnerSelection(task.getStateTask().getStatue());
+            setSpinnerSelection(task.getStateTask().getStatue(this)); // Use 'this' for context
         }
     }
 
@@ -90,11 +91,12 @@ public class EditTaskActivity extends AppCompatActivity {
         currentTask.setBeginDate(beginDate);
         currentTask.setMaxEndDate(endDate);
         currentTask.setProjectName(project);
-        currentTask.getStateTask().changeState(state);
+        currentTask.getStateTask().changeState(state, this);
 
-        if (state.equals("Closed")) {
+        String closedState = getString(R.string.closed);
+        if (state.equals(closedState)) {
             dbHelper.deleteTask(currentTask.getId());
-            Toast.makeText(this, "Task deleted as it is marked Closed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Task deleted as it is marked " + closedState, Toast.LENGTH_SHORT).show();
         } else {
             dbHelper.updateTask(currentTask);
             Toast.makeText(this, "Task updated successfully", Toast.LENGTH_SHORT).show();
@@ -104,5 +106,4 @@ public class EditTaskActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
-
 }

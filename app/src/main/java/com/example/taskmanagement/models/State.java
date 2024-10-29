@@ -1,9 +1,7 @@
 package com.example.taskmanagement.models;
 
-import static com.example.taskmanagement.utils.Constants.CLOSED;
-import static com.example.taskmanagement.utils.Constants.DOING;
-import static com.example.taskmanagement.utils.Constants.TODO;
-import static com.example.taskmanagement.utils.Constants.COMPLETED;
+import android.content.Context;
+import com.example.taskmanagement.R;
 
 public class State {
     private boolean toDo;
@@ -18,62 +16,46 @@ public class State {
         this.completed = false;
     }
 
-    /**
-     * This method allows to change the state of the task.
-     * Cette méthode permet de changer l'état de la tâche
-     * @param newState The new state of the task / Le nouvel état de la tâche
-     */
-    public void changeState(String newState) {
-        switch (newState) {
-            case "To Do":
-                this.toDo = true;
-                this.doing = false;
-                this.closed = false;
-                this.completed = false;
-                break;
-            case "In Progress":
-                this.toDo = false;
-                this.doing = true;
-                this.closed = false;
-                this.completed = false;
-                break;
-            case "Closed":
-                this.toDo = false;
-                this.doing = false;
-                this.closed = true;
-                this.completed = false;
-                break;
-            case "Completed":
-                this.toDo = false;
-                this.doing = false;
-                this.closed = false;
-                this.completed = true;
-                break;
+    public void changeState(String newState, Context context) {
+
+        String todoState = context.getString(R.string.to_do);
+        String inProgressState = context.getString(R.string.in_progress);
+        String closedState = context.getString(R.string.closed);
+        String completedState = context.getString(R.string.completed);
+
+        if (newState.equals(todoState)) {
+            this.toDo = true;
+            this.doing = false;
+            this.closed = false;
+            this.completed = false;
+        } else if (newState.equals(inProgressState)) {
+            this.toDo = false;
+            this.doing = true;
+            this.closed = false;
+            this.completed = false;
+        } else if (newState.equals(closedState)) {
+            this.toDo = false;
+            this.doing = false;
+            this.closed = true;
+            this.completed = false;
+        } else if (newState.equals(completedState)) {
+            this.toDo = false;
+            this.doing = false;
+            this.closed = false;
+            this.completed = true;
         }
     }
 
-    public String getStatue() {
+    public String getStatue(Context context) {
+
         if (toDo) {
-            return TODO;
+            return context.getString(R.string.to_do);
         } else if (doing) {
-            return DOING;
+            return context.getString(R.string.in_progress);
         } else if (completed) {
-            return COMPLETED;
+            return context.getString(R.string.completed);
         } else {
-            return CLOSED;
-        }
-    }
-
-    public int compareTo(State other) {
-        if (getStatue().equalsIgnoreCase(other.getStatue())) {
-            return 0;
-        } else {
-            if ((getStatue().equalsIgnoreCase(TODO) || getStatue().equalsIgnoreCase(DOING) || getStatue().equalsIgnoreCase(COMPLETED)) &&
-                    (other.getStatue().equalsIgnoreCase(DOING) || other.getStatue().equalsIgnoreCase(CLOSED))) {
-                return 1;
-            } else {
-                return -1;
-            }
+            return context.getString(R.string.closed);
         }
     }
 }

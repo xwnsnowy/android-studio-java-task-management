@@ -1,20 +1,18 @@
 package com.example.taskmanagement.activities;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.taskmanagement.R;
 import com.example.taskmanagement.adapter.TaskListAdapter;
 import com.example.taskmanagement.models.Task;
 import com.example.taskmanagement.database.DatabaseHelper;
-
 import java.util.List;
 
 /**
@@ -27,6 +25,7 @@ public class MyTasksFragment extends Fragment implements TaskListActivity.TaskSe
     private RecyclerView recyclerView;
     private TaskListAdapter taskAdapter;
     private DatabaseHelper dbHelper;
+    private String todoState;
 
     public static MyTasksFragment newInstance() {
         return new MyTasksFragment();
@@ -38,12 +37,14 @@ public class MyTasksFragment extends Fragment implements TaskListActivity.TaskSe
         View view = inflater.inflate(R.layout.fragment_my_tasks, container, false);
         recyclerView = view.findViewById(R.id.rcv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
         dbHelper = new DatabaseHelper(getContext());
-        List<Task> taskList = dbHelper.getTasksByState("To Do");
-        taskAdapter = new TaskListAdapter(taskList);
-        recyclerView.setAdapter(taskAdapter);
 
+        todoState = getString(R.string.to_do);
+        Log.d("MyTasksFragment", "Current todoState: " + todoState);
+
+        List<Task> taskList = dbHelper.getTasksByState(todoState);
+        taskAdapter = new TaskListAdapter(getContext(), taskList);
+        recyclerView.setAdapter(taskAdapter);
         return view;
     }
 
@@ -55,8 +56,7 @@ public class MyTasksFragment extends Fragment implements TaskListActivity.TaskSe
     }
 
     public void refreshTasks() {
-        List<Task> updatedTasks = dbHelper.getTasksByState("To Do");
+        List<Task> updatedTasks = dbHelper.getTasksByState(todoState);
         taskAdapter.updateTasks(updatedTasks);
     }
-
 }

@@ -1,6 +1,7 @@
 package com.example.taskmanagement.activities;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.AutoCompleteTextView;
@@ -39,7 +40,6 @@ public class CreateTaskActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         bindingView();
         bindingAction();
     }
@@ -101,6 +101,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         String duration = durationHours + "h " + durationMinutes + "m";
 
         Task task = new Task(
+                this,
                 name,
                 description,
                 duration,

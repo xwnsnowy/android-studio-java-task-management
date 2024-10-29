@@ -65,6 +65,7 @@ public class TaskListActivity extends AppCompatActivity {
         if (username == null) {
             username = userPrefs.getString("currentUser", "Guest");
         }
+
         databaseHelper = new DatabaseHelper(this);
         User user = databaseHelper.getUserByUsername(username);
         TextView tvWelcome = findViewById(R.id.tv_name);
@@ -84,10 +85,10 @@ public class TaskListActivity extends AppCompatActivity {
                     tab.setText(R.string.my_tasks);
                     break;
                 case 1:
-                    tab.setText(R.string.in_progress);
+                    tab.setText(R.string.in_progress_2);
                     break;
                 case 2:
-                    tab.setText(R.string.completed);
+                    tab.setText(R.string.completed_2);
                     break;
             }
         }).attach();

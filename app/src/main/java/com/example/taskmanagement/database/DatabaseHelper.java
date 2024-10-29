@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.taskmanagement.R;
 import com.example.taskmanagement.models.State;
 import com.example.taskmanagement.models.Task;
 import com.example.taskmanagement.models.User;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-
+    private Context context;
     private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "TaskManagement.db";
 
@@ -61,6 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     @Override
@@ -107,7 +109,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_TASK_ESTIMATE_DURATION, task.getEstimateDuration());
         values.put(COLUMN_TASK_BEGIN_DATE, task.getBeginDate());
         values.put(COLUMN_TASK_END_DATE, task.getMaxEndDate());
-        values.put(COLUMN_TASK_STATE, "To Do");
+        values.put(COLUMN_TASK_STATE, context.getString(R.string.to_do));
         values.put(COLUMN_TASK_CONTEXT, task.getContext());
         values.put(COLUMN_TASK_PROJECT, task.getProjectName());
         values.put(COLUMN_TASK_URL, task.getUrl());
@@ -137,6 +139,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Task> getTasksByState(String state) {
         List<Task> tasks = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
+        Log.d("DatabaseHelper", "Fetching tasks with state: " + state);
 
         Cursor cursor = db.query(TABLE_TASK,
                 new String[]{
@@ -161,8 +164,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (cursor.moveToFirst()) {
                 do {
                     State taskState = new State();
-                    taskState.changeState(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_STATE)));
-
+                    taskState.changeState(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_STATE)), context);
                     Task task = new Task(
                             cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_TASK_ID)),
                             cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_NAME)),
@@ -178,6 +180,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     tasks.add(task);
                 } while (cursor.moveToNext());
             }
+            Log.d("DatabaseHelper", "Number of tasks with state 'Cần làm': " + cursor.getCount());
             cursor.close();
         }
         db.close();
@@ -190,7 +193,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor != null && cursor.moveToFirst()) {
             State taskState = new State();
-            taskState.changeState(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_STATE)));
+            taskState.changeState(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_STATE)), context);
 
             Task task = new Task(
                     cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_TASK_ID)),
@@ -215,7 +218,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_TASK_NAME, task.getName());
         values.put(COLUMN_TASK_DESCRIPTION, task.getDescription());
-        values.put(COLUMN_TASK_STATE, task.getStateTask().getStatue());
+        values.put(COLUMN_TASK_STATE, task.getStateTask().getStatue(context));
         values.put(COLUMN_TASK_BEGIN_DATE, task.getBeginDate());
         values.put(COLUMN_TASK_END_DATE, task.getMaxEndDate());
 
