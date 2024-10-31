@@ -1,5 +1,7 @@
 package com.example.taskmanagement.activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,11 +21,11 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class InProgressFragment extends Fragment implements TaskListActivity.TaskSearchListener {
-
     private RecyclerView recyclerView;
     private TaskListAdapter taskAdapter;
     private DatabaseHelper dbHelper;
     private String inprogressState;
+    private int userId;
 
     public static InProgressFragment newInstance() {
         return new InProgressFragment();
@@ -36,10 +38,13 @@ public class InProgressFragment extends Fragment implements TaskListActivity.Tas
         recyclerView = view.findViewById(R.id.rcv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         dbHelper = new DatabaseHelper(getContext());
-
         inprogressState = getString(R.string.in_progress);
 
-        List<Task> taskList = dbHelper.getTasksByState(inprogressState);
+        // Lấy userId từ SharedPreferences
+        SharedPreferences preferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        userId = preferences.getInt("currentUserId", -1);
+
+        List<Task> taskList = dbHelper.getTasksByState(inprogressState, userId);
         taskAdapter = new TaskListAdapter(getContext(), taskList);
         recyclerView.setAdapter(taskAdapter);
         return view;
@@ -53,7 +58,7 @@ public class InProgressFragment extends Fragment implements TaskListActivity.Tas
     }
 
     public void refreshTasks() {
-        List<Task> updatedTasks = dbHelper.getTasksByState(inprogressState);
+        List<Task> updatedTasks = dbHelper.getTasksByState(inprogressState, userId);
         taskAdapter.updateTasks(updatedTasks);
     }
 }

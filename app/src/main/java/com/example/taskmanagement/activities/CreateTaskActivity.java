@@ -29,6 +29,7 @@ public class CreateTaskActivity extends AppCompatActivity {
     private EditText taskName, taskDesc, taskContext, taskBeginDate, taskEndDate, createTaskUrl;
     private AutoCompleteTextView taskProject;
     private NumberPicker taskDurationHour, taskDurationMinutes;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class CreateTaskActivity extends AppCompatActivity {
             return insets;
         });
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
+        userId = getIntent().getIntExtra("userId", -1);
         bindingView();
         bindingAction();
     }
@@ -116,7 +117,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         );
 
         DatabaseHelper db = new DatabaseHelper(this);
-        db.addTask(task);
+        db.addTask(task, userId);
 
         Intent intent = new Intent(CreateTaskActivity.this, TaskListActivity.class);
         intent.putExtra("refreshTasks", true);

@@ -43,9 +43,8 @@
             android:paddingBottom="5dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/edit_task_text"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black" />
+            style="@style/SubTitleTextView"
+            android:textSize="24sp"/>
 
         <!-- Task Name Input -->
         <EditText

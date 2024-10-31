@@ -5,8 +5,8 @@
         android:title="@string/change_language" />
     <item
         android:id="@+id/menu_item2"
-        android:title="Item 2" />
+        android:title="Help (Coming Soon)" />
     <item
         android:id="@+id/menu_item3"
-        android:title="Item 3" />
+        android:title="Statistics (Coming Soon)" />
 </menu>

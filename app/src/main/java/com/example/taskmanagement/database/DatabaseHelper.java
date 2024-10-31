@@ -17,7 +17,7 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private Context context;
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 7;
     private static final String DATABASE_NAME = "TaskManagement.db";
 
     private static final String TABLE_USER = "user";
@@ -54,7 +54,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COLUMN_TASK_STATE + " TEXT, "
             + COLUMN_TASK_CONTEXT + " TEXT, "
             + COLUMN_TASK_PROJECT + " TEXT, "
-            + COLUMN_TASK_URL + " TEXT"
+            + COLUMN_TASK_URL + " TEXT, "
+            + COLUMN_USER_ID + " INTEGER, "
+            + "FOREIGN KEY(" + COLUMN_USER_ID + ") REFERENCES " + TABLE_USER + "(" + COLUMN_USER_ID + ")"
             + ")";
 
     private final String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
@@ -77,13 +79,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        try {
-            db.execSQL(DROP_USER_TABLE);
-            onCreate(db);
-        } catch (Exception e) {
-            Log.e("DatabaseHelper", "Error upgrading database", e);
+        if (oldVersion < DATABASE_VERSION) {
+            try {
+                db.execSQL("ALTER TABLE " + TABLE_TASK + " ADD COLUMN " + COLUMN_USER_ID + " INTEGER REFERENCES " + TABLE_USER + "(" + COLUMN_USER_ID + ")");
+            } catch (Exception e) {
+                Log.e("DatabaseHelper", "Error adding column user_id", e);
+            }
         }
     }
+
 
     public void addUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -101,7 +105,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void addTask(Task task) {
+    public void addTask(Task task, int userId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TASK_NAME, task.getName());
@@ -113,9 +117,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_TASK_CONTEXT, task.getContext());
         values.put(COLUMN_TASK_PROJECT, task.getProjectName());
         values.put(COLUMN_TASK_URL, task.getUrl());
+        values.put(COLUMN_USER_ID, userId);
         db.insert(TABLE_TASK, null, values);
         db.close();
     }
+
+    public int getUserIdByUsername(String username) {
+        int userId = -1;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        try {
+            cursor = db.query(TABLE_USER,
+                    new String[]{COLUMN_USER_ID},
+                    COLUMN_USER_USERNAME + " = ?",
+                    new String[]{username},
+                    null, null, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                userId = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_USER_ID));
+            }
+        } catch (Exception e) {
+            Log.e("DatabaseHelper", "Error getting user ID", e);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
+        }
+        return userId;
+    }
+
 
     public boolean checkUser(String username) {
         String[] columns = { COLUMN_USER_USERNAME };
@@ -136,10 +166,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return exists;
     }
 
-    public List<Task> getTasksByState(String state) {
+    public List<Task> getTasksByState(String state, int userId) {
         List<Task> tasks = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Log.d("DatabaseHelper", "Fetching tasks with state: " + state);
+        Log.d("DatabaseHelper", "Fetching tasks with state: " + state + " for user ID: " + userId);
 
         Cursor cursor = db.query(TABLE_TASK,
                 new String[]{
@@ -154,8 +184,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         COLUMN_TASK_PROJECT,
                         COLUMN_TASK_URL
                 },
-                COLUMN_TASK_STATE + " = ?",
-                new String[]{state},
+                COLUMN_TASK_STATE + " = ? AND " + COLUMN_USER_ID + " = ?",
+                new String[]{state, String.valueOf(userId)},
                 null,
                 null,
                 null);
@@ -180,21 +210,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     tasks.add(task);
                 } while (cursor.moveToNext());
             }
-            Log.d("DatabaseHelper", "Number of tasks with state 'Cần làm': " + cursor.getCount());
+            Log.d("DatabaseHelper", "Number of tasks with state '" + state + "' for user ID: " + userId + ": " + cursor.getCount());
             cursor.close();
         }
         db.close();
         return tasks;
     }
 
-    public Task getTaskById(int id) {
+    public Task getTaskById(int id, int userId) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_TASK, null, COLUMN_TASK_ID + " = ?", new String[]{String.valueOf(id)}, null, null, null);
-
+        Cursor cursor = db.query(TABLE_TASK,
+                null,
+                COLUMN_TASK_ID + " = ? AND " + COLUMN_USER_ID + " = ?",
+                new String[]{String.valueOf(id), String.valueOf(userId)},
+                null,
+                null,
+                null);
         if (cursor != null && cursor.moveToFirst()) {
             State taskState = new State();
             taskState.changeState(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_STATE)), context);
-
             Task task = new Task(
                     cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_TASK_ID)),
                     cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TASK_NAME)),
@@ -229,11 +263,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public void deleteTask(int taskId) {
+    public void deleteTask(int taskId, int userId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_TASK, COLUMN_TASK_ID + " = ?", new String[]{String.valueOf(taskId)});
+        db.delete(TABLE_TASK, COLUMN_TASK_ID + " = ? AND " + COLUMN_USER_ID + " = ?",
+                new String[]{String.valueOf(taskId), String.valueOf(userId)});
         db.close();
     }
+
 
     public boolean isLoginValid(String username, String password) {
         String[] columns = { COLUMN_USER_USERNAME };

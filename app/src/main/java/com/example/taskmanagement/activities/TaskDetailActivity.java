@@ -3,6 +3,7 @@ package com.example.taskmanagement.activities;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -13,9 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.taskmanagement.R;
 import com.example.taskmanagement.models.Task;
 import com.example.taskmanagement.database.DatabaseHelper;
@@ -25,6 +24,7 @@ public class TaskDetailActivity extends AppCompatActivity {
     private TextView taskName, taskDescription, taskDate, taskEstimatedDuration, taskProject, taskState;
     private ImageView taskIcon, btnDelete;
     private Button btnBack, btnUpdate;
+    private int userId;
 
     private void bindingView() {
         taskName = findViewById(R.id.task_name);
@@ -45,10 +45,14 @@ public class TaskDetailActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(this::onBtnUpdateClick);
     }
 
-    private void bindingData(int taskId) {
-        Task task = dbHelper.getTaskById(taskId);
-        Context context = taskName.getContext();
+    private void bindingView(int taskId) {
+        // Lấy userId từ SharedPreferences
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        userId = preferences.getInt("currentUserId", -1);
 
+        // Lấy task từ database với userId
+        Task task = dbHelper.getTaskById(taskId, userId);
+        Context context = taskName.getContext();
         if (task != null) {
             String taskNameLabel = context.getString(R.string.task_name_label);
             String taskNameText = taskNameLabel + ": " + task.getName();
@@ -58,21 +62,17 @@ public class TaskDetailActivity extends AppCompatActivity {
             String taskDescriptionText = taskDescriptionLabel + ": " + task.getDescription();
             taskDescription.setText(createBoldSpannable(taskDescriptionText, taskDescriptionLabel.length()));
 
-
             String taskStateLabel = context.getString(R.string.task_state_label);
             String taskStateText = taskStateLabel + ": " + task.getStateTask().getStatue(this);
             taskState.setText(createBoldSpannable(taskStateText, taskStateLabel.length()));
-
 
             String taskDateLabel = context.getString(R.string.task_date_label);
             String taskDateText = taskDateLabel + ": " + task.getMaxEndDate();
             taskDate.setText(createBoldSpannable(taskDateText, taskDateLabel.length()));
 
-
             String taskEstimatedDurationLabel = context.getString(R.string.task_estimated_duration_label);
             String taskEstimatedDurationText = taskEstimatedDurationLabel + ": " + task.getEstimateDuration();
             taskEstimatedDuration.setText(createBoldSpannable(taskEstimatedDurationText, taskEstimatedDurationLabel.length()));
-
 
             String taskProjectLabel = context.getString(R.string.task_project_label);
             String taskProjectText = taskProjectLabel + ": " + task.getProjectName();
@@ -91,21 +91,18 @@ public class TaskDetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     private void onBtnDeleteClick(View view) {
         int taskId = getIntent().getIntExtra("taskId", -1);
-
-        // Tạo hộp thoại xác nhận
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        userId = preferences.getInt("currentUserId", -1);
         new AlertDialog.Builder(this)
                 .setTitle("Xác nhận xóa")
                 .setMessage("Bạn có chắc chắn muốn xóa không?")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     // Thực hiện xóa trong DatabaseHelper
-                    dbHelper.deleteTask(taskId);
-
+                    dbHelper.deleteTask(taskId, userId);
                     // Hiển thị toast thông báo xóa thành công
                     Toast.makeText(TaskDetailActivity.this, "Xóa thành công", Toast.LENGTH_SHORT).show();
-
                     // Chuyển sang TaskListActivity và làm mới danh sách
                     Intent intent = new Intent(TaskDetailActivity.this, TaskListActivity.class);
                     intent.putExtra("refreshTasks", true);
@@ -114,7 +111,6 @@ public class TaskDetailActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("No", null)
                 .show();
-
     }
 
     private SpannableString createBoldSpannable(String text, int labelLength) {
@@ -127,15 +123,13 @@ public class TaskDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_detail);
-
         dbHelper = new DatabaseHelper(this);
         int taskId = getIntent().getIntExtra("taskId", -1);
 
         // Bind views and actions
         bindingView();
         bindingAction();
-
         // Load and display task data
-        bindingData(taskId);
+        bindingView(taskId);
     }
 }

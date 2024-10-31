@@ -1,5 +1,7 @@
 package com.example.taskmanagement.activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,11 +21,11 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class CompletedFragment extends Fragment implements TaskListActivity.TaskSearchListener {
-
     private RecyclerView recyclerView;
     private TaskListAdapter taskAdapter;
     private DatabaseHelper dbHelper;
     private String completedState;
+    private int userId; // Thêm biến này để lưu user ID
 
     public static CompletedFragment newInstance() {
         return new CompletedFragment();
@@ -36,10 +38,13 @@ public class CompletedFragment extends Fragment implements TaskListActivity.Task
         recyclerView = view.findViewById(R.id.rcv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         dbHelper = new DatabaseHelper(getContext());
-
         completedState = getString(R.string.completed);
 
-        List<Task> taskList = dbHelper.getTasksByState(completedState);
+        // Lấy userId từ SharedPreferences
+        SharedPreferences preferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        userId = preferences.getInt("currentUserId", -1);
+
+        List<Task> taskList = dbHelper.getTasksByState(completedState, userId); // Sử dụng userId
         taskAdapter = new TaskListAdapter(getContext(), taskList);
         recyclerView.setAdapter(taskAdapter);
         return view;
@@ -53,7 +58,7 @@ public class CompletedFragment extends Fragment implements TaskListActivity.Task
     }
 
     public void refreshTasks() {
-        List<Task> updatedTasks = dbHelper.getTasksByState(completedState);
+        List<Task> updatedTasks = dbHelper.getTasksByState(completedState, userId); // Sử dụng userId
         taskAdapter.updateTasks(updatedTasks);
     }
 }

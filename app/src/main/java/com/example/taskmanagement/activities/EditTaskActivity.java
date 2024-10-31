@@ -2,6 +2,7 @@ package com.example.taskmanagement.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -16,19 +17,18 @@ import com.example.taskmanagement.models.Task;
 import com.example.taskmanagement.database.DatabaseHelper;
 
 public class EditTaskActivity extends AppCompatActivity {
-
     private EditText taskName, taskDesc, taskBeginDate, taskEndDate, taskProject;
     private Spinner taskStateSpinner;
     private Button updateButton, btnBack;
     private DatabaseHelper dbHelper;
     private Task currentTask;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
 
-        // Initialize fields
         taskName = findViewById(R.id.task_name);
         taskDesc = findViewById(R.id.task_desc);
         taskBeginDate = findViewById(R.id.task_begin_date);
@@ -37,13 +37,14 @@ public class EditTaskActivity extends AppCompatActivity {
         taskStateSpinner = findViewById(R.id.task_state_spinner);
         updateButton = findViewById(R.id.update_task_button);
         btnBack = findViewById(R.id.back_button);
-
         dbHelper = new DatabaseHelper(this);
 
-        // Retrieve task ID passed from intent
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        userId = preferences.getInt("currentUserId", -1);
+
         int taskId = getIntent().getIntExtra("taskId", -1);
         if (taskId != -1) {
-            currentTask = dbHelper.getTaskById(taskId);
+            currentTask = dbHelper.getTaskById(taskId, userId);
             loadTaskData(currentTask);
         }
 
@@ -55,7 +56,6 @@ public class EditTaskActivity extends AppCompatActivity {
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         taskStateSpinner.setAdapter(adapter);
-
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         // Update task on button click
@@ -105,7 +105,7 @@ public class EditTaskActivity extends AppCompatActivity {
 
         String closedState = getString(R.string.closed);
         if (state.equals(closedState)) {
-            dbHelper.deleteTask(currentTask.getId());
+            dbHelper.deleteTask(currentTask.getId(), userId); // Sử dụng userId
             Toast.makeText(this, "Task deleted as it is marked " + closedState, Toast.LENGTH_SHORT).show();
         } else {
             dbHelper.updateTask(currentTask);

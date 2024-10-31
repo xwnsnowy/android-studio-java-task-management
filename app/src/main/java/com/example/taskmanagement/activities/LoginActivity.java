@@ -47,19 +47,22 @@ public class LoginActivity extends AppCompatActivity {
     private void onBtnLoginClick(View view) {
         String username = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
+        int userId = databaseHelper.getUserIdByUsername(username); // Lấy user ID từ database
         if (databaseHelper.isLoginValid(username, password)) {
             // Save to SharedPreferences
             editor.putString("currentUser", username);
+            editor.putInt("currentUserId", userId); // Lưu user ID
             editor.apply();
             // Redirect to TaskListActivity
             Intent intent = new Intent(LoginActivity.this, TaskListActivity.class);
-            intent.putExtra("username", username);
+            intent.putExtra("userId", userId); // Truyền user ID
             startActivity(intent);
             finish();
         } else {
             Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void onBtnRegisterClick(View view) {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);

@@ -178,7 +178,10 @@ public class TaskListActivity extends AppCompatActivity {
 
     private void onBtnNewTaskClick(View view) {
         Intent intent = new Intent(TaskListActivity.this, CreateTaskActivity.class);
+        int userId = getIntent().getIntExtra("userId", -1);
+        intent.putExtra("userId", userId);
         startActivity(intent);
+
     }
 
     private void applyNightMode() {

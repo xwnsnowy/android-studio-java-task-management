@@ -1,10 +1,11 @@
 package com.example.taskmanagement.activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,11 +22,11 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class MyTasksFragment extends Fragment implements TaskListActivity.TaskSearchListener {
-
     private RecyclerView recyclerView;
     private TaskListAdapter taskAdapter;
     private DatabaseHelper dbHelper;
     private String todoState;
+    private int userId; // Thêm biến này để lưu user ID
 
     public static MyTasksFragment newInstance() {
         return new MyTasksFragment();
@@ -38,11 +39,14 @@ public class MyTasksFragment extends Fragment implements TaskListActivity.TaskSe
         recyclerView = view.findViewById(R.id.rcv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         dbHelper = new DatabaseHelper(getContext());
-
         todoState = getString(R.string.to_do);
         Log.d("MyTasksFragment", "Current todoState: " + todoState);
 
-        List<Task> taskList = dbHelper.getTasksByState(todoState);
+        // Lấy userId từ SharedPreferences
+        SharedPreferences preferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        userId = preferences.getInt("currentUserId", -1);
+
+        List<Task> taskList = dbHelper.getTasksByState(todoState, userId); // Sử dụng userId
         taskAdapter = new TaskListAdapter(getContext(), taskList);
         recyclerView.setAdapter(taskAdapter);
         return view;
@@ -56,7 +60,7 @@ public class MyTasksFragment extends Fragment implements TaskListActivity.TaskSe
     }
 
     public void refreshTasks() {
-        List<Task> updatedTasks = dbHelper.getTasksByState(todoState);
+        List<Task> updatedTasks = dbHelper.getTasksByState(todoState, userId); // Sử dụng userId
         taskAdapter.updateTasks(updatedTasks);
     }
 }
