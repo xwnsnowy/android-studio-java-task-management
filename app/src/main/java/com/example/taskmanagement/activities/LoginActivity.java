@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             editor.apply();
             // Redirect to TaskListActivity
             Intent intent = new Intent(LoginActivity.this, TaskListActivity.class);
-            intent.putExtra("username", username); // Truyền thêm thông tin username
+            intent.putExtra("username", username);
             startActivity(intent);
             finish();
         } else {
@@ -71,14 +71,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Initialize Database Helper
         databaseHelper = new DatabaseHelper(this);
 
-        // Initialize SharedPreferences
         preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         editor = preferences.edit();
 
-        // Bind views and actions
         bindingView();
         bindingAction();
     }

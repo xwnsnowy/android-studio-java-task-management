@@ -284,7 +284,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.close();
         }
 
-        return user; // Return the User object (or null if not found)
+        return user;
     }
 
 }

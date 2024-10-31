@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:layout_margin="20dp"
-        android:background="@drawable/custom_edittext"
+        android:backgroundTint="@color/secondaryBackgroundColor"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,17 +60,18 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical"
+
             android:padding="20dp">
 
             <!-- Title -->
             <TextView
                 android:id="@+id/tv_login_title"
+                style="@style/TitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/btn_login"
-                style="@style/TitleTextView"
-                android:textColor="#333333"
+                android:textColor="@color/textColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -97,9 +98,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_regular"
                 android:background="@drawable/custom_edittext"
                 android:drawableLeft="@drawable/baseline_lock_24"
+                android:fontFamily="@font/poppins_regular"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"
                 android:padding="10dp"
@@ -110,11 +111,11 @@
             <!-- Login Button -->
             <Button
                 android:id="@+id/btn_login"
+                style="@style/ButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                style="@style/ButtonStyle"
-                android:backgroundTint="@color/primaryBackgroundColor"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/primaryColor"
                 android:text="@string/btn_login"
                 android:textColor="#ffffff"
                 app:layout_constraintEnd_toEndOf="parent"

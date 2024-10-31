@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.taskmanagement.R;
@@ -13,27 +14,40 @@ import java.util.Locale;
 public class LanguagesActivity extends AppCompatActivity {
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
+    private Button btnBack;
+    ImageView flagVietnam, flagUS, flagFrance;
+
+    private void bindingView() {
+        btnBack = findViewById(R.id.btn_back);
+        flagVietnam = findViewById(R.id.flag_vietnam);
+        flagUS = findViewById(R.id.flag_us);
+        flagFrance = findViewById(R.id.flag_france);
+    }
+
+    private void bindingAction() {
+        btnBack.setOnClickListener(this::onBtnBackClick);
+        flagVietnam.setOnClickListener(v -> setLocaleAndRestart("vi", "VN"));
+        flagUS.setOnClickListener(v -> setLocaleAndRestart("en", "US"));
+        flagFrance.setOnClickListener(v -> setLocaleAndRestart("fr", "FR"));
+    }
+
+    private void onBtnBackClick(View view) {
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_languages);
 
-        // Khởi tạo SharedPreferences và Editor
         mPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE);
         mEditor = mPreferences.edit();
 
-        // Set the saved language
         Locale savedLocale = findLanguagePreferences();
         setLocale(savedLocale);
 
-        ImageView flagVietnam = findViewById(R.id.flag_vietnam);
-        ImageView flagUS = findViewById(R.id.flag_us);
-        ImageView flagFrance = findViewById(R.id.flag_france);
-
-        flagVietnam.setOnClickListener(v -> setLocaleAndRestart("vi", "VN"));
-        flagUS.setOnClickListener(v -> setLocaleAndRestart("en", "US"));
-        flagFrance.setOnClickListener(v -> setLocaleAndRestart("fr", "FR"));
+        bindingView();
+        bindingAction();
     }
 
     private void setLocale(Locale locale) {
@@ -48,7 +62,6 @@ public class LanguagesActivity extends AppCompatActivity {
         setLocale(locale);
         saveLanguage(language);
 
-        // Restart TaskListActivity to apply language change
         Intent intent = new Intent(LanguagesActivity.this, TaskListActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);

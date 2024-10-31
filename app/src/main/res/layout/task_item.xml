@@ -40,8 +40,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
             android:text="Task Name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@android:color/black" />
+            style="@style/TextViewStyle"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
         <!-- Task Description -->
         <TextView
@@ -49,10 +49,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            style="@style/TextViewStyle"
             android:fontFamily="@font/poppins_semibold"
             android:text="Task Description"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@android:color/black" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
     </LinearLayout>
 
     <!-- Detail Icon -->

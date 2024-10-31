@@ -24,7 +24,7 @@
             <!-- Main Background with Border -->
             <item>
                 <shape>
-                    <solid android:color="#fff"/>
+                    <solid android:color="@color/secondaryBackgroundColor"/>
                     <corners android:radius="20dp"/>
                     <stroke android:width="2dp" android:color="#CCCCCC"/>
                 </shape>

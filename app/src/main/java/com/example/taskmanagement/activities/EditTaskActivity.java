@@ -3,6 +3,8 @@ package com.example.taskmanagement.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +19,7 @@ public class EditTaskActivity extends AppCompatActivity {
 
     private EditText taskName, taskDesc, taskBeginDate, taskEndDate, taskProject;
     private Spinner taskStateSpinner;
-    private Button updateButton;
+    private Button updateButton, btnBack;
     private DatabaseHelper dbHelper;
     private Task currentTask;
 
@@ -34,6 +36,7 @@ public class EditTaskActivity extends AppCompatActivity {
         taskProject = findViewById(R.id.task_project);
         taskStateSpinner = findViewById(R.id.task_state_spinner);
         updateButton = findViewById(R.id.update_task_button);
+        btnBack = findViewById(R.id.back_button);
 
         dbHelper = new DatabaseHelper(this);
 
@@ -53,8 +56,15 @@ public class EditTaskActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         taskStateSpinner.setAdapter(adapter);
 
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         // Update task on button click
         updateButton.setOnClickListener(v -> updateTask());
+        btnBack.setOnClickListener(this::onBtnBackClick);
+    }
+
+    private void onBtnBackClick(View view) {
+        finish();
     }
 
     private void loadTaskData(Task task) {

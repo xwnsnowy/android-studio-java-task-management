@@ -2,10 +2,49 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.TaskManagement" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/my_dark_primary</item>
+        <item name="colorPrimaryDark">@color/my_dark_primary_dark</item>
+        <item name="colorAccent">@color/my_dark_accent</item>
     </style>
-
     <style name="ScreenBackground">
         <item name="android:background">@android:color/black</item>
     </style>
+<!--    <style name="ButtonAddTask">-->
+<!--        <item name="android:backgroundTint">@color/my_dark_primary</item>-->
+<!--        <item name="android:textColor">@android:color/white</item>-->
+<!--    </style>-->
+<!--    <style name="TabTextAppearanceSelected">-->
+<!--        <item name="android:textColor">@color/white</item>-->
+<!--    </style>-->
+<!--    <style name="TabTextAppearance">-->
+<!--        <item name="android:textColor">@android:color/white</item>-->
+<!--    </style>-->
+    <style name="TabTextAppearance">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TabTextAppearanceSelected">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TabLayoutBackground">
+        <item name="android:background">@color/my_dark_primary</item>
+    </style>
+
+    <style name="ToolbarBackground">
+        <item name="android:background">@color/my_dark_primary</item>
+    </style>
+
+    <style name="FragmentBackground">
+        <item name="android:background">@color/my_dark_primary</item>
+    </style>
+
+    <style name="TextViewStyle">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="Theme.TaskManagement" parent="Base.Theme.TaskManagement" />
 </resources>

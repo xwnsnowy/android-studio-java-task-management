@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryBackgroundColor">#000</color>
+    <color name="secondaryBackgroundColor">#212121</color>
+    <color name="shapeBackgroundColor">#000</color>
+
+    <color name="unselectedTabColor">#B4F5F5F5</color>
+
+    <color name="primaryColor">#445ae3</color>
+
+    <color name="textColor">#fff</color>
+    <color name="textDetailColor">#E0E0E0</color>
+
+    <color name="textSelectedColor">#fff</color>
+
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="purple">#8692f7</color>
+
+    <color name="trackLight">#8692f7</color>
+    <color name="grey">#aaa</color>
+    <color name="trackSun">#FF9999</color>
+
+    <color name="my_light_primary">#6200EE</color>
+    <color name="my_light_primary_dark">#3700B3</color>
+    <color name="my_light_accent">#03DAC5</color>
+    <color name="my_dark_primary">#212121</color>
+    <color name="my_dark_primary_dark">#3700B3</color>
+    <color name="my_dark_accent">#03DAC5</color>
+
+</resources>

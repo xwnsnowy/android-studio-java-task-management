@@ -60,6 +60,10 @@
     <string name="my_profile">Hồ sơ của tôi</string>
     <string name="logout">Đăng xuất</string>
 
+    <string name="choose_your_language">Chọn Ngôn Ngữ Của Bạn</string>
+    <string name="vn">Tiếng Việt</string>
+    <string name="us">Tiếng Anh (Mỹ)</string>
+    <string name="fr">Tiếng Pháp (Pháp)</string>
 
     <string name="hello_blank_fragment">Xin chào đoạn trống</string>
 

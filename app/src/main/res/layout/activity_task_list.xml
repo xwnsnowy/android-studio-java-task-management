@@ -14,6 +14,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
+        style="@style/ToolbarBackground"
         android:layout_height="?attr/actionBarSize"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -61,7 +62,7 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/welcome"
-        android:textColor="@android:color/black"
+        style="@style/TextViewStyle"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
@@ -73,7 +74,7 @@
         android:fontFamily="@font/poppins_semibold"
         android:layout_marginTop="32dp"
         android:layout_marginStart="8dp"
-        android:textColor="@android:color/black"
+        style="@style/TextViewStyle"
         android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/tv_welcome"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
@@ -103,19 +104,16 @@
 
         <ImageButton
             android:id="@+id/search_icon"
-            android:layout_width="40sp"
-            android:layout_height="40sp"
+            android:layout_width="36sp"
+            android:layout_height="36sp"
             android:layout_marginTop="10sp"
             android:background="@drawable/search" />
 
-        <EditText
-            android:id="@+id/search_content"
+        <EditText android:id="@+id/search_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:focusableInTouchMode="true"
-            android:maxLines="1"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             />
 
     </LinearLayout>
@@ -125,7 +123,7 @@
         android:id="@+id/btn_new_task"
         style="@style/ButtonAddTask"
         android:layout_width="110dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="36dp"
         android:text="@string/new_task"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -147,11 +145,12 @@
         app:tabMode="auto"
         app:tabPaddingEnd="20dp"
         app:tabPaddingStart="20dp"
+        style="@style/TabLayoutBackground"
         app:tabRippleColor="@android:color/transparent"
         app:tabSelectedTextAppearance="@style/TabTextAppearanceSelected"
-        app:tabSelectedTextColor="@color/white"
+        app:tabSelectedTextColor="@color/textSelectedColor"
         app:tabTextAppearance="@style/TabTextAppearance"
-        app:tabTextColor="@android:color/black" />
+        app:tabTextColor="@color/textColor" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
