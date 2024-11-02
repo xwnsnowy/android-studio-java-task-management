@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
             editor.apply();
             // Redirect to TaskListActivity
             Intent intent = new Intent(LoginActivity.this, TaskListActivity.class);
-            intent.putExtra("userId", userId); // Truyền user ID
+            intent.putExtra("userId", userId);
             startActivity(intent);
             finish();
         } else {

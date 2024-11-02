@@ -42,6 +42,8 @@
 
     <string name="edit_task_text">Modifier la tâche</string>
     <string name="select_state">Sélectionner l\'état</string>
+    <string name="help">Aide (Bientôt Disponible)</string>
+    <string name="statistics">Statistiques (Bientôt Disponible)</string>
 
     <string-array name="task_states">
         <item>To Do</item>
@@ -56,7 +58,7 @@
     <string name="closed">Closed</string>
 
     <string name="change_language">Changer de langue</string>
-    <string name="my_profile">Mon profil</string>
+    <string name="my_profile">Mon Profil (À Venir)</string>
     <string name="logout">Se déconnecter</string>
 
     <string name="choose_your_language">Choisissez Votre Langue</string>

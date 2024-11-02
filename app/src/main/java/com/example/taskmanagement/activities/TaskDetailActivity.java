@@ -46,11 +46,9 @@ public class TaskDetailActivity extends AppCompatActivity {
     }
 
     private void bindingView(int taskId) {
-        // Lấy userId từ SharedPreferences
         SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         userId = preferences.getInt("currentUserId", -1);
 
-        // Lấy task từ database với userId
         Task task = dbHelper.getTaskById(taskId, userId);
         Context context = taskName.getContext();
         if (task != null) {
@@ -99,11 +97,11 @@ public class TaskDetailActivity extends AppCompatActivity {
                 .setTitle("Xác nhận xóa")
                 .setMessage("Bạn có chắc chắn muốn xóa không?")
                 .setPositiveButton("Yes", (dialog, which) -> {
-                    // Thực hiện xóa trong DatabaseHelper
+
                     dbHelper.deleteTask(taskId, userId);
-                    // Hiển thị toast thông báo xóa thành công
+
                     Toast.makeText(TaskDetailActivity.this, "Xóa thành công", Toast.LENGTH_SHORT).show();
-                    // Chuyển sang TaskListActivity và làm mới danh sách
+
                     Intent intent = new Intent(TaskDetailActivity.this, TaskListActivity.class);
                     intent.putExtra("refreshTasks", true);
                     startActivity(intent);
@@ -126,10 +124,9 @@ public class TaskDetailActivity extends AppCompatActivity {
         dbHelper = new DatabaseHelper(this);
         int taskId = getIntent().getIntExtra("taskId", -1);
 
-        // Bind views and actions
         bindingView();
         bindingAction();
-        // Load and display task data
+
         bindingView(taskId);
     }
 }

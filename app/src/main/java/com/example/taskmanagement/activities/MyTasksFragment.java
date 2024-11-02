@@ -42,11 +42,10 @@ public class MyTasksFragment extends Fragment implements TaskListActivity.TaskSe
         todoState = getString(R.string.to_do);
         Log.d("MyTasksFragment", "Current todoState: " + todoState);
 
-        // Lấy userId từ SharedPreferences
         SharedPreferences preferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         userId = preferences.getInt("currentUserId", -1);
 
-        List<Task> taskList = dbHelper.getTasksByState(todoState, userId); // Sử dụng userId
+        List<Task> taskList = dbHelper.getTasksByState(todoState, userId);
         taskAdapter = new TaskListAdapter(getContext(), taskList);
         recyclerView.setAdapter(taskAdapter);
         return view;
@@ -60,7 +59,7 @@ public class MyTasksFragment extends Fragment implements TaskListActivity.TaskSe
     }
 
     public void refreshTasks() {
-        List<Task> updatedTasks = dbHelper.getTasksByState(todoState, userId); // Sử dụng userId
+        List<Task> updatedTasks = dbHelper.getTasksByState(todoState, userId);
         taskAdapter.updateTasks(updatedTasks);
     }
 }

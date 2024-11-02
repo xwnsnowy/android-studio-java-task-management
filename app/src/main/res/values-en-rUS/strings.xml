@@ -19,7 +19,7 @@
     <string name="profile">Profile</string>
     <string name="task_icon">Task Icon</string>
     <string name="have_a_nice_day">Have a nice day.</string>
-    <string name="my_tasks">My Tasks</string>
+    <string name="my_tasks">To do</string>
     <string name="in_progress_2">In Progress</string>
     <string name="completed_2">Complete</string>
 
@@ -41,6 +41,8 @@
     <string name="task_date_label">Due Date</string>
     <string name="task_estimated_duration_label">Estimated Duration</string>
     <string name="task_project_label">Project</string>
+    <string name="help">Help (Coming Soon)</string>
+    <string name="statistics">Statistics (Coming Soon)</string>
 
     <string name="edit_task_text">Edit Task</string>
     <string name="select_state">Select State</string>
@@ -57,7 +59,7 @@
     <string name="closed">Closed</string>
 
     <string name="change_language">Change Language</string>
-    <string name="my_profile">My Profile</string>
+    <string name="my_profile">My Profile (Coming soon)</string>
     <string name="logout">Logout</string>
 
     <string name="choose_your_language">Choose Your Language</string>

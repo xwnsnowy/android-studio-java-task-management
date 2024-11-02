@@ -40,7 +40,6 @@ public class InProgressFragment extends Fragment implements TaskListActivity.Tas
         dbHelper = new DatabaseHelper(getContext());
         inprogressState = getString(R.string.in_progress);
 
-        // Lấy userId từ SharedPreferences
         SharedPreferences preferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         userId = preferences.getInt("currentUserId", -1);
 

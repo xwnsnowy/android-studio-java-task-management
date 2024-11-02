@@ -48,7 +48,6 @@ public class EditTaskActivity extends AppCompatActivity {
             loadTaskData(currentTask);
         }
 
-        // Set up spinner for task states
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.task_states,
@@ -58,7 +57,6 @@ public class EditTaskActivity extends AppCompatActivity {
         taskStateSpinner.setAdapter(adapter);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        // Update task on button click
         updateButton.setOnClickListener(v -> updateTask());
         btnBack.setOnClickListener(this::onBtnBackClick);
     }
@@ -74,7 +72,7 @@ public class EditTaskActivity extends AppCompatActivity {
             taskBeginDate.setText(task.getBeginDate());
             taskEndDate.setText(task.getMaxEndDate());
             taskProject.setText(task.getProjectName());
-            setSpinnerSelection(task.getStateTask().getStatue(this)); // Use 'this' for context
+            setSpinnerSelection(task.getStateTask().getStatue(this));
         }
     }
 
@@ -105,7 +103,7 @@ public class EditTaskActivity extends AppCompatActivity {
 
         String closedState = getString(R.string.closed);
         if (state.equals(closedState)) {
-            dbHelper.deleteTask(currentTask.getId(), userId); // Sử dụng userId
+            dbHelper.deleteTask(currentTask.getId(), userId);
             Toast.makeText(this, "Task deleted as it is marked " + closedState, Toast.LENGTH_SHORT).show();
         } else {
             dbHelper.updateTask(currentTask);

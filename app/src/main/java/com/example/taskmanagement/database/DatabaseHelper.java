@@ -107,19 +107,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void addTask(Task task, int userId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_TASK_NAME, task.getName());
-        values.put(COLUMN_TASK_DESCRIPTION, task.getDescription());
-        values.put(COLUMN_TASK_ESTIMATE_DURATION, task.getEstimateDuration());
-        values.put(COLUMN_TASK_BEGIN_DATE, task.getBeginDate());
-        values.put(COLUMN_TASK_END_DATE, task.getMaxEndDate());
-        values.put(COLUMN_TASK_STATE, context.getString(R.string.to_do));
-        values.put(COLUMN_TASK_CONTEXT, task.getContext());
-        values.put(COLUMN_TASK_PROJECT, task.getProjectName());
-        values.put(COLUMN_TASK_URL, task.getUrl());
-        values.put(COLUMN_USER_ID, userId);
-        db.insert(TABLE_TASK, null, values);
-        db.close();
+        try {
+            ContentValues values = new ContentValues();
+
+            // Log các giá trị đang được đưa vào ContentValues để kiểm tra
+            Log.d("DatabaseHelper", "Task Name: " + task.getName());
+            Log.d("DatabaseHelper", "Task Description: " + task.getDescription());
+            Log.d("DatabaseHelper", "Task Estimate Duration: " + task.getEstimateDuration());
+            Log.d("DatabaseHelper", "Task Begin Date: " + task.getBeginDate());
+            Log.d("DatabaseHelper", "Task End Date: " + task.getMaxEndDate());
+            Log.d("DatabaseHelper", "Task State: " + context.getString(R.string.to_do));
+            Log.d("DatabaseHelper", "Task Context: " + task.getContext());
+            Log.d("DatabaseHelper", "Task Project: " + task.getProjectName());
+            Log.d("DatabaseHelper", "Task URL: " + task.getUrl());
+            Log.d("DatabaseHelper", "User ID: " + userId);
+
+            values.put(COLUMN_TASK_NAME, task.getName());
+            values.put(COLUMN_TASK_DESCRIPTION, task.getDescription());
+            values.put(COLUMN_TASK_ESTIMATE_DURATION, task.getEstimateDuration());
+            values.put(COLUMN_TASK_BEGIN_DATE, task.getBeginDate());
+            values.put(COLUMN_TASK_END_DATE, task.getMaxEndDate());
+            values.put(COLUMN_TASK_STATE, context.getString(R.string.to_do));
+            values.put(COLUMN_TASK_CONTEXT, task.getContext());
+            values.put(COLUMN_TASK_PROJECT, task.getProjectName());
+            values.put(COLUMN_TASK_URL, task.getUrl());
+            values.put(COLUMN_USER_ID, userId);
+
+            // Thêm log trước khi insert
+            Log.d("DatabaseHelper", "Inserting task into database");
+
+            db.insert(TABLE_TASK, null, values);
+
+            // Log khi thành công
+            Log.d("DatabaseHelper", "Task inserted successfully");
+
+        } catch (Exception e) {
+            Log.e("DatabaseHelper", "Error adding task", e);
+        } finally {
+            db.close();
+            Log.d("DatabaseHelper", "Database closed");
+        }
     }
 
     public int getUserIdByUsername(String username) {

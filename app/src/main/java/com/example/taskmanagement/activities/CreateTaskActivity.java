@@ -3,13 +3,16 @@ package com.example.taskmanagement.activities;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -117,12 +120,18 @@ public class CreateTaskActivity extends AppCompatActivity {
         );
 
         DatabaseHelper db = new DatabaseHelper(this);
+
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        int userId = preferences.getInt("currentUserId", -1);
+
         db.addTask(task, userId);
+        Toast.makeText(this, "Task added successfully", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(CreateTaskActivity.this, TaskListActivity.class);
         intent.putExtra("refreshTasks", true);
         startActivity(intent);
         finish();
     }
+
 
 }

@@ -45,15 +45,12 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        // Initialize DatabaseHelper
         databaseHelper = new DatabaseHelper(this);
 
-        // Bind views and actions
         bindingView();
         bindingAction();
     }
 
-    // Method to register user
     private void registerUser() {
         String name = etName.getText().toString().trim();
         String username = etUsername.getText().toString().trim();

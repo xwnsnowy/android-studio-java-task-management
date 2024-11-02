@@ -19,9 +19,11 @@
     <string name="profile">Hồ sơ</string>
     <string name="task_icon">Task Icon</string>
     <string name="have_a_nice_day">Chúc một ngày tốt lành.</string>
-    <string name="my_tasks">Tất cả</string>
+    <string name="my_tasks">Cần làm</string>
     <string name="in_progress_2">Đang thực hiện</string>
     <string name="completed_2">Hoàn thành</string>
+    <string name="help">Giúp đỡ (Sắp Ra Mắt)</string>
+    <string name="statistics">Thống Kê (Sắp Ra Mắt)</string>
 
     <string name="new_task">Nhiệm vụ mới</string>
     <string name="create_task_text">Tạo nhiệm vụ</string>
@@ -57,7 +59,7 @@
     <string name="closed">Closed</string>
 
     <string name="change_language">Thay đổi ngôn ngữ</string>
-    <string name="my_profile">Hồ sơ của tôi</string>
+    <string name="my_profile">Hồ Sơ Của Tôi (Sắp Ra Mắt)</string>
     <string name="logout">Đăng xuất</string>
 
     <string name="choose_your_language">Chọn Ngôn Ngữ Của Bạn</string>

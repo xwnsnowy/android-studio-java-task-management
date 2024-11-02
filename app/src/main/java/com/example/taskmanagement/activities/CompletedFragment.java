@@ -25,7 +25,7 @@ public class CompletedFragment extends Fragment implements TaskListActivity.Task
     private TaskListAdapter taskAdapter;
     private DatabaseHelper dbHelper;
     private String completedState;
-    private int userId; // Thêm biến này để lưu user ID
+    private int userId;
 
     public static CompletedFragment newInstance() {
         return new CompletedFragment();
@@ -40,11 +40,10 @@ public class CompletedFragment extends Fragment implements TaskListActivity.Task
         dbHelper = new DatabaseHelper(getContext());
         completedState = getString(R.string.completed);
 
-        // Lấy userId từ SharedPreferences
         SharedPreferences preferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         userId = preferences.getInt("currentUserId", -1);
 
-        List<Task> taskList = dbHelper.getTasksByState(completedState, userId); // Sử dụng userId
+        List<Task> taskList = dbHelper.getTasksByState(completedState, userId);
         taskAdapter = new TaskListAdapter(getContext(), taskList);
         recyclerView.setAdapter(taskAdapter);
         return view;
@@ -58,7 +57,7 @@ public class CompletedFragment extends Fragment implements TaskListActivity.Task
     }
 
     public void refreshTasks() {
-        List<Task> updatedTasks = dbHelper.getTasksByState(completedState, userId); // Sử dụng userId
+        List<Task> updatedTasks = dbHelper.getTasksByState(completedState, userId);
         taskAdapter.updateTasks(updatedTasks);
     }
 }

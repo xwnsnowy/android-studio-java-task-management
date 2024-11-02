@@ -135,7 +135,6 @@ public class TaskListActivity extends AppCompatActivity {
     }
 
     private void bindingAction() {
-        // Set switch state according to current mode
         boolean nightMode = (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES);
         switchMode.setChecked(nightMode);
 
@@ -151,6 +150,7 @@ public class TaskListActivity extends AppCompatActivity {
                 saveMode(true);
             }
         });
+
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         // Set action for the menu button
@@ -181,7 +181,6 @@ public class TaskListActivity extends AppCompatActivity {
         int userId = getIntent().getIntExtra("userId", -1);
         intent.putExtra("userId", userId);
         startActivity(intent);
-
     }
 
     private void applyNightMode() {
@@ -220,10 +219,10 @@ public class TaskListActivity extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.menu_item1) {
-                // Logout logic
+
                 editor.remove("currentUser");
                 editor.apply();
-                // Redirect to HomeActivity
+
                 Intent intent = new Intent(TaskListActivity.this, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
